@@ -11,13 +11,13 @@ main {
 
 /* label focus color */
 .input-field input:focus+label {
-    color: #4a148c;
+    color: #4a148c !important;
 }
 
 /* label underline focus color */
 .row .input-field input:focus {
-    border-bottom: 1px solid #4a148c;
-    box-shadow: 0 1px 0 0 #4a148c;
+    border-bottom: 1px solid #4a148c !important;
+    box-shadow: 0 1px 0 0 #4a148c !important;
 }
 
 /* hyperlink text color */
