@@ -6,6 +6,52 @@
 <!-- main page content block -->
 {% block content %}
 
-<h1>this is the registration page</h1>
+<div class="center-align">
+    <div>
+        <h1>Welcome to Quick Notes</h1>
+    </div>
+    <div class="divider"></div>
+    <div>
+        <h4>Register below to get started</h4>
+    </div>
+    <div class="container">
+        <form class="col s12" method="POST">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="email" type="email" class="validate" name="email">
+                    <label for="email">Email</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="first_name" type="text" class="validate" name="first_name">
+                    <label for="first_name">First Name</label>
+                </div>
+                <div class="input-field col s12">
+                    <input id="last_name" type="text" class="validate" name="last_name">
+                    <label for="last_name">Last Name</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="password" type="password" class="validate" name="password1">
+                    <label for="password">Password</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="password2" type="password" class="validate" name="password2">
+                    <label for="confirm_password">Password (Confirm)</label>
+                </div>
+            </div>
+            <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                <i class="material-icons right">send</i>
+            </button>
+        </form>
+    </div>
+    <div>
+        <h6>Already have an account? <a href="{{ url_for('login') }}">login here!</a></h6>
+    </div>
+</div>
 
 {% endblock %}
