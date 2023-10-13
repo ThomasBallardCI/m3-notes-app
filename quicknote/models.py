@@ -10,11 +10,12 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.String(150))
     email = db.Column(db.String(150), unique=True)
     password = db.Column(db.String(150))
-    notes = db.relationship("Note")
+    notes = db.relationship("Note", backref="user", cascade="all, delete", lazy=True)
 
     def __repr__(self):
-        return "#{0} - First_Name: {1} | Last_Name: {2} | Email: {3} | Password: {4}".format
-        (self.id, self.first_name, self.last_name, self.email, self.password,)
+        return "#{0} - FirstName: {1} | LastName: {2} | Email: {3} | Password: {4}".format(
+            self.id, self.first_name, self.last_name, self.email, self.password
+        )
 
 
 class Note(db.Model):
@@ -23,8 +24,9 @@ class Note(db.Model):
     title = db.Column(db.String(150))
     content = db.Column(db.String(10000))
     date = db.Column(db.DateTime(timezone=True), default=func.now())
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id", ondelete="CASCADE"), nullable=False)
 
     def __repr__(self):
-        return "#{0} - Title: {1} | Content: {2} | Date: {3} | User_id: {4}".format(
-            self.id, self.title, self.content, self.date, self.user_id)
+        return "#{0} - Title: {1} | Content: {2} | Date: {3} | UserID: {4}".format(
+            self.id, self.title, self.content, self.date, self.user_id
+        )
