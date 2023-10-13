@@ -20,7 +20,10 @@ def register():
         password1 = request.form.get("password1")
         password2 = request.form.get("password2")
 
-        if len(email) < 4:
+        user = User.query.filter_by(email=email).first()
+        if user:
+            flash("Email already exists", category="error")
+        elif len(email) < 4:
             flash("The Email must be consist of more than 3 characters",
                   category="error")
         elif len(first_name) < 2:
@@ -42,32 +45,40 @@ def register():
                 password=generate_password_hash(password1, method="sha256"))
             db.session.add(new_user)
             db.session.commit()
+            login_user(user, remember=True)
             flash("Account Created!", category="success")
-            return redirect(url_for("home"))
+            return redirect(url_for("notes"))
 
     return render_template("register.html")
 
 
-@app.route("/notes")
-def notes():
-    return render_template("notes.html")
-
-
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    return render_template("login.html")
-    # if request.method == "POST":
-    #     email = request.form.get("email")
-    #     password = request.form.get("password")
+    if request.method == "POST":
+        email = request.form.get("email")
+        password = request.form.get("password")
 
-    #     user - User.query.filter_by(email=email).first()
-    #     if user:
-    #         if check_password_hash(user.password, password):
-    #             flash("Logged in Successfully!", category="success")
-    #         else:
-    #             flash("Incorrect Password, Try again.")
+        user = User.query.filter_by(email=email).first()
+        if user:
+            if check_password_hash(user.password, password):
+                flash("Logged in Successfully!", category="success")
+                login_user(user, remember=True)
+                return redirect(url_for("notes"))
+            else:
+                flash("Incorrect Password, Try again.", category="error")
+        else:
+            flash("Email does not exist", category="error")
+    return render_template("login.html")
 
 
 @app.route("/logout")
+@login_required
 def logout():
-    return render_template("logout.html")
+    logout_user()
+    return redirect(url_for("home"))
+
+
+@app.route("/notes")
+@login_required
+def notes():
+    return render_template("notes.html")
