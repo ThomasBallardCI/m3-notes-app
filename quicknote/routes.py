@@ -7,7 +7,7 @@ from flask_login import login_user, login_required, logout_user, current_user
 
 @app.route("/")
 def home():
-    return render_template("home.html")
+    return render_template("home.html", user=current_user)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -45,11 +45,11 @@ def register():
                 password=generate_password_hash(password1, method="sha256"))
             db.session.add(new_user)
             db.session.commit()
-            login_user(user, remember=True)
+            login_user(new_user, remember=True)
             flash("Account Created!", category="success")
             return redirect(url_for("notes"))
 
-    return render_template("register.html")
+    return render_template("register.html", user=current_user)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -68,7 +68,7 @@ def login():
                 flash("Incorrect Password, Try again.", category="error")
         else:
             flash("Email does not exist", category="error")
-    return render_template("login.html")
+    return render_template("login.html", user=current_user)
 
 
 @app.route("/logout")
@@ -78,7 +78,18 @@ def logout():
     return redirect(url_for("home"))
 
 
-@app.route("/notes")
+@app.route("/notes", methods=(["GET", "POST"]))
 @login_required
 def notes():
-    return render_template("notes.html")
+    if request.method == "POST":
+        note = request.form.get("note")
+
+        if len(note) < 1:
+            flash("Note is too short!", category="error")
+        else:
+            new_note = Note(data=note, user_id=current_user.id)
+            db.session.add(new_note)
+            db.session.commit()
+            flash("Note added!", category-"success")
+
+    return render_template("notes.html", user=current_user)
