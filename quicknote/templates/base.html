@@ -36,6 +36,43 @@
             <li><a href="{{ url_for('logout') }}">Logout</a></li>
         </ul>
     </header>
+
+    <!-- alert bar to alert flash error or success messages from auth.py -->
+    <!-- function define varable messages equal to get_flashed_message to get all flashed messages and categories-->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+
+    <!-- loop through all flash messages and display relevent flash message -->
+    {% if messages %}
+    {% for category, message in messages %}
+    <!-- alert for errors -->
+    {% if category == "error" %}
+    <div class="container">
+        <div class="card-alert card red lighten-5">
+            <div class="card-content red-text">
+                <strong>{{ message }}</strong>
+            </div>
+            <button type="button" class="close red-text" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- alert for success -->
+    {% else %}
+    <div class="container">
+        <div class="card-alert card green lighten-5">
+            <div class="card-content green-text">
+                <strong>{{ message }}</strong>
+            </div>
+            <button type="button" class="close green-text" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
     
     <main class="container">
         {% block content %}

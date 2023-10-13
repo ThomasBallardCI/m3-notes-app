@@ -24,3 +24,26 @@ main {
 a {
     color: #4a148c;
 }
+
+/* flash messages alert styling */
+.card-alert button {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    border: medium none;
+    color: #fff;
+    font-size: 20px;
+    position: absolute;
+    right: 10px;
+    top: 15px;
+    color: inherit;
+    cursor: pointer;
+}
+
+.card-alert a {
+    color: inherit;
+    font-weight: 500;
+}
+
+.card-alert a:hover {
+    color: inherit;
+    text-decoration: underline;
+}
