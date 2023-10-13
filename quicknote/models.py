@@ -10,7 +10,8 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.String(150))
     email = db.Column(db.String(150), unique=True)
     password = db.Column(db.String(150))
-    notes = db.relationship("Note", backref="user", cascade="all, delete", lazy=True)
+    notes = db.relationship("Note", backref="user",
+                            cascade="all, delete", lazy=True)
 
     def __repr__(self):
         return "#{0} - FirstName: {1} | LastName: {2} | Email: {3} | Password: {4}".format(
