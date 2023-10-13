@@ -13,9 +13,10 @@ class User(db.Model, UserMixin):
     notes = db.relationship("Note")
 
     def __repr__(self):
-        return "#{0} - FirstName: {1} | LastName: {2} | Email: {3} | Password: {4}".format(
-            self.id, self.first_name, self.last_name, self.email, self.password
-        )
+        return ("#{0} - FirstName: {1} | LastName: {2} | "
+                "Email: {3} | Password: {4}".format(
+                    self.id, self.first_name, self.last_name,
+                    self.email, self.password))
 
 
 class Note(db.Model):
@@ -27,6 +28,7 @@ class Note(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
 
     def __repr__(self):
-        return "#{0} - Title: {1} | Content: {2} | Date: {3} | UserID: {4}".format(
-            self.id, self.title, self.content, self.date, self.user_id
-        )
+        return ("#{0} - Title: {1} | Content: {2} | "
+                "Date: {3} | UserID: {4}".format(
+                    self.id, self.title, self.content,
+                    self.date, self.user_id))
