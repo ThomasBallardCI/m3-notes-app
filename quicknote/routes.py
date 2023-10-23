@@ -3,6 +3,7 @@ from quicknote import app, db
 from quicknote.models import User, Note
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, login_required, logout_user, current_user
+from sqlalchemy import desc
 
 
 @app.route("/")
@@ -81,15 +82,31 @@ def logout():
 @app.route("/notes", methods=(["GET", "POST"]))
 @login_required
 def notes():
-    if request.method == "POST":
-        note = request.form.get("note")
+    notes = list(Note.query.filter_by(
+        user_id=current_user.id).order_by(desc(Note.note_date)).all())
 
-        if len(note) < 1:
+    return render_template("notes.html", notes=notes, user=current_user)
+
+
+@app.route("/add_note", methods=["GET", "POST"])
+@login_required
+def add_note():
+    if request.method == "POST":
+        note_title = request.form.get("note_title")
+        note_content = request.form.get("note_content")
+        note_date = request.form.get("note_date")
+
+        if len(note_title) < 1:
+            flash("Title is too short!", category="error")
+        elif len(note_content) < 1:
             flash("Note is too short!", category="error")
         else:
-            new_note = Note(data=note, user_id=current_user.id)
-            db.session.add(new_note)
-            db.session.commit()
-            flash("Note added!", category-"success")
+            new_note = Note(note_content=note_content, note_title=note_title,
+                            note_date=note_date, user_id=current_user.id)
 
-    return render_template("notes.html", user=current_user)
+        db.session.add(new_note)
+        db.session.commit()
+
+        return redirect(url_for("notes"))
+
+    return render_template("add_note.html",  user=current_user)

@@ -47,3 +47,7 @@ a {
     color: inherit;
     text-decoration: underline;
 }
+
+/* textarea.materialize-textarea{
+    height: 30vh !important;
+} */
