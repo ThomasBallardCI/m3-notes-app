@@ -1,6 +1,6 @@
-from quicknote import db
 from flask_login import UserMixin
 from sqlalchemy.sql import func
+from quicknote import db
 
 
 class User(db.Model, UserMixin):
