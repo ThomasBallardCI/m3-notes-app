@@ -1,10 +1,43 @@
+"""
+QuickNote Data Models Module
+
+Description:
+    This module defines the data models used in the QuickNote application. It includes
+    the UserMixin class, which provides user management functionality and interfaces
+    required for user sessions and authentication. The module also defines a set of
+    data models for the application, such as the 'User' and 'Note' models.
+
+    Dependencies:
+    - flask_login.UserMixin: Provides user management functionality for the application.
+    - sqlalchemy.sql.func: Provides SQL functions for database operations.
+    - quicknote.db: The database instance used to interact with the database.
+
+    Use this module to define and manage the data models used by the QuickNote application.
+"""
 from flask_login import UserMixin
 from sqlalchemy.sql import func
 from quicknote import db
 
 
+# schema for Users model
 class User(db.Model, UserMixin):
-    # schema for Users model
+    """
+    User Model for QuickNote Application
+
+    Attributes:
+        id (int): The unique identifier for the user.
+        first_name (str): The user's first name.
+        last_name (str): The user's last name.
+        email (str): The user's email address, which is unique and not nullable.
+        password (str): The hashed password for the user.
+        notes (relationship): A relationship to the user's notes.
+
+    Description:
+        This class represents the User model for the QuickNote application. It defines
+        the schema and attributes for user data, including the user's name, email,
+        password, and related notes. The 'id' attribute serves as the primary key
+        for identifying individual users.
+    """
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(150))
     last_name = db.Column(db.String(150))
@@ -13,14 +46,31 @@ class User(db.Model, UserMixin):
     notes = db.relationship("Note")
 
     def __repr__(self):
-        return ("#{0} - FirstName: {1} | LastName: {2} | "
-                "Email: {3} | Password: {4}".format(
-                    self.id, self.first_name, self.last_name,
-                    self.email, self.password))
+        return (f"#{self.id} - FirstName: {self.first_name} | "
+                f"LastName: {self.last_name} | "
+                f"Email: {self.email} | "
+                f"Password: {self.password}")
 
 
+# schema for Notes model
 class Note(db.Model):
-    # schema for Notes model
+    """
+    Note Model for QuickNote Application
+
+    Attributes:
+        id (int): The unique identifier for the note.
+        note_title (str): The title of the note.
+        note_content (str): The content of the note.
+        note_date (datetime): The date and time when the note was created.
+        user_id (int): The foreign key linking the note to a user.
+
+    Description:
+        This class represents the Note model for the QuickNote application. It defines
+        the schema and attributes for notes, including their title, content, creation
+        date, and the user to whom the note belongs. The 'id' attribute serves as the
+        primary key for identifying individual notes, and 'user_id' establishes a
+        relationship to the user who created the note.
+    """
     id = db.Column(db.Integer, primary_key=True)
     note_title = db.Column(db.String(30))
     note_content = db.Column(db.String(10000))
@@ -28,7 +78,7 @@ class Note(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
 
     def __repr__(self):
-        return ("#{0} - Title: {1} | Content: {2} | "
-                "Date: {3} | UserID: {4}".format(
-                    self.id, self.title, self.content,
-                    self.date, self.user_id))
+        return (f"#{self.id} - Title: {self.title} | "
+                f"Content: {self.content} | "
+                f"Date: {self.date} | "
+                f"UserID: {self.user_id}")

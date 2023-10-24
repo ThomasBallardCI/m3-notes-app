@@ -20,7 +20,11 @@
             <div class="collapsible-header">
                 <i class="material-icons">keyboard_arrow_down</i>
                 <strong>{{ note.note_title }}</strong>
-                <div class="date-right">{{ note.note_date.strftime('%d/%m/%Y') }}</div>
+                <div class="date-right">
+                    {% if note.note_date %}
+                    <p>{{ note.note_date.strftime('%d/%m/%Y') }}</p>
+                    {% endif %}
+                </div>
             </div>
             <div class="collapsible-body">
                 <p>{{ note.note_content }}</p>
