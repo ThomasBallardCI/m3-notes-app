@@ -48,6 +48,9 @@ a {
     text-decoration: underline;
 }
 
-/* textarea.materialize-textarea{
-    height: 30vh !important;
-} */
+/* dateTime styling to the right of collapsible */
+.date-right {
+    margin-right: 0;
+    margin-left: auto;
+    font-size: small;
+}

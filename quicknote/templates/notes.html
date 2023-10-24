@@ -5,27 +5,28 @@
 
 <!-- main page content block -->
 {% block content %}
-
-<h1 class="center-align">Welcome to your Notes {{ user.first_name}}</h1>
-<div class="row">
-    <div class="col s12 center-align">
-        <a href="{{ url_for('add_note') }}" class="waves-effect waves-light btn-large">
-            <i class="material-icons right">add</i>New Note</a>
+<div class="container">
+    <h1 class="center-align">Welcome to your notes {{ user.first_name}}</h1>
+    <div class="row">
+        <div class="col s12 center-align">
+            <a href="{{ url_for('add_note') }}" class="waves-effect waves-light btn-large">
+                <i class="material-icons right">add</i>New Note</a>
+        </div>
     </div>
-</div>
 
-<ul class="collapsible">
-    {% for note in notes %}
-    <li>
-        <div class="collapsible-header">
-            <i class="material-icons">keyboard_arrow_down</i>
-            <strong>{{ note.note_title }}</strong>
-            <p>{{ note.note_date }}</p>
-        </div>
-        <div class="collapsible-body">
-            <p>{{ note.note_content }}</p>
-        </div>
-    </li>
-    {% endfor %}
-</ul>
+    <ul class="collapsible popout">
+        {% for note in notes %}
+        <li>
+            <div class="collapsible-header">
+                <i class="material-icons">keyboard_arrow_down</i>
+                <strong>{{ note.note_title }}</strong>
+                <div class="date-right">{{ note.note_date.strftime('%d/%m/%Y') }}</div>
+            </div>
+            <div class="collapsible-body">
+                <p>{{ note.note_content }}</p>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
 {% endblock %}
