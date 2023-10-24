@@ -110,3 +110,27 @@ def add_note():
         return redirect(url_for("notes"))
 
     return render_template("add_note.html",  user=current_user)
+
+
+@app.route("/edit_note/<int:note_id>", methods=["GET", "POST"])
+@login_required
+def edit_note(note_id):
+    note = Note.query.get_or_404(note_id)
+    if request.method == "POST":
+        note.note_title = request.form.get("note_title")
+        note.note_content = request.form.get("note_content")
+        note_date = request.form.get("note_date")
+
+        if len(note.note_title) < 1:
+            flash("Title is too short!", category="error")
+        elif len(note.note_content) < 1:
+            flash("Note is too short!", category="error")
+        else:
+            edit = Note(note_content=note.note_content, note_title=note.note_title,
+                        note_date=note_date, user_id=current_user.id)
+
+        db.session.commit()
+
+        return redirect(url_for("notes"))
+
+    return render_template("edit_note.html", note=note, user=current_user)
