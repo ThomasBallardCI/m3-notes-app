@@ -1,0 +1,1 @@
+When editing a note, figure out why the edited note is not moving to the top of the list
