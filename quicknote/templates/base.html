@@ -21,6 +21,7 @@
                     {% if user.is_authenticated %}
                     <li><a class="black-text" href="{{ url_for('home') }}">Home</a></li>
                     <li><a class="black-text" href="{{ url_for('notes') }}">Notes</a></li>
+                    <li><a class="black-text" href="{{ url_for('user_management') }}">Account</a></li>
                     <li><a class="black-text" href="{{ url_for('logout') }}">Logout</a></li>
                     {% else %}
                     <li><a class="black-text" href="{{ url_for('home') }}">Home</a></li>
@@ -36,6 +37,7 @@
             {% if user.is_authenticated %}
             <li><a href="{{ url_for('home') }}">Home</a></li>
             <li><a href="{{ url_for('notes') }}">Notes</a></li>
+            <li><a href="{{ url_for('user_management') }}">Account</a></li>
             <li><a href="{{ url_for('logout') }}">Logout</a></li>
             {% else %}
             <li><a href="{{ url_for('home') }}">Home</a></li>

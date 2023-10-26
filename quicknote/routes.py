@@ -105,6 +105,21 @@ def register():
     return render_template("register.html", user=current_user)
 
 
+@app.route("/user_management")
+@login_required
+def user_management():
+    return render_template("user_management.html", user=current_user)
+
+
+@app.route("/delete_user/<int:user_id>")
+@login_required
+def delete_user(user_id):
+    user = User.query.get_or_404(user_id)
+    db.session.delete(user)
+    db.session.commit()
+    return redirect(url_for("home"))
+
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     """
@@ -216,7 +231,6 @@ def add_note():
 
         db.session.add(new_note)
         db.session.commit()
-
         return redirect(url_for("notes"))
 
     return render_template("add_note.html",  user=current_user)
@@ -254,9 +268,18 @@ def edit_note(note_id):
             flash("Note is too short!", category="error")
         else:
             note.note_date = datetime.now()
-
             db.session.commit()
-
             return redirect(url_for("notes"))
 
     return render_template("edit_note.html", note=note, user=current_user)
+
+
+@app.route("/delete_note/<int:note_id>")
+@login_required
+def delete_note(note_id):
+    note = Note.query.get_or_404(note_id)
+    db.session.delete(note)
+    db.session.commit()
+    return redirect(url_for("notes"))
+
+

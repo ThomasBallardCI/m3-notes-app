@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+<!-- page title block -->
+{% block title %} Account {% endblock %}
+
+<!-- main page content block -->
+{% block content %}
+
+<div class="container center-align">
+    <h1 class="section">Account Management</h1>
+    <div class="row">
+        <div class="col s12 center-align">
+            <div class="card">
+                <div class="card-content black-text">
+                    <span class="card-title"><h2>Welcome {{ user.first_name }}</h2></span>
+                    <h4>Click below to delete your Quick Notes account</h4>
+                    <p class="red-text">Deleting your account will delete and remove all saved notes</p>
+                </div>
+                <div class="card-action">
+                    <a class="waves-effect waves-light btn red" href="{{ url_for('delete_user', user_id=user.id) }}">Delete Account</a>
+                    <a class="waves-effect waves-light btn" href="{{ url_for('notes') }}">Back to Notes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

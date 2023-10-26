@@ -43,7 +43,8 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.String(150))
     email = db.Column(db.String(150), unique=True, nullable=False)
     password = db.Column(db.String(150))
-    notes = db.relationship("Note")
+    notes = db.relationship(
+        "Note", backref="user", cascade="all, delete", lazy=True)
 
     def __repr__(self):
         return (f"#{self.id} - FirstName: {self.first_name} | "
@@ -75,7 +76,8 @@ class Note(db.Model):
     note_title = db.Column(db.String(30))
     note_content = db.Column(db.String(10000))
     note_date = db.Column(db.DateTime(timezone=True), default=func.now())
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    user_id = db.Column(db.Integer, db.ForeignKey(
+        "user.id", ondelete="CASCADE"), nullable=False)
 
     def __repr__(self):
         return (f"#{self.id} - Title: {self.title} | "
