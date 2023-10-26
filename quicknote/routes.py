@@ -281,5 +281,3 @@ def delete_note(note_id):
     db.session.delete(note)
     db.session.commit()
     return redirect(url_for("notes"))
-
-
