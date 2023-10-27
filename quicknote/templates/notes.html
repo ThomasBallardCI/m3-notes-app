@@ -14,19 +14,6 @@
         </div>
     </div>
 
-    <div id="delete_note_modal" class="modal">
-        <div class="modal-content">
-            <h4>Confirmation Required</h4>
-            <p>Are you sure you want to proceed? If you click "Agree," the note you want to delete will be permanently erased, and cannot be recovered.</p>
-        </div>
-        <div class="modal-footer">
-            <input type="hidden" id="noteIdToDelete">
-            <a class="btn red" id="agreeToDelete" href="#">Agree</a>
-
-
-        </div>
-    </div>
-
     <ul class="collapsible popout">
         {% for note in notes %}
         <li>
@@ -47,5 +34,16 @@
         </li>
         {% endfor %}
     </ul>
+    {% for note in notes %}
+    <div id="delete_note_modal" class="modal">
+        <div class="modal-content">
+            <h4>Confirmation Required</h4>
+            <p>Are you sure you want to proceed? If you click "Agree," the note you want to delete will be permanently erased, and cannot be recovered.</p>
+        </div>
+        <div class="modal-footer">
+            <a class="btn red" href="{{ url_for('delete_note', note_id=note.id) }}">Agree</a>
+        </div>
+    </div>
+    {% endfor %}
 </div>
 {% endblock %}
