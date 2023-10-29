@@ -32,26 +32,37 @@ document.addEventListener('DOMContentLoaded', function () {
     let modals = document.querySelectorAll('.modal');
     M.Modal.init(modals);
 
+    // Select all elements with the class 'delete-button'
     let deleteButtons = document.querySelectorAll('.delete-button');
+
+    // Iterate through each delete button
     deleteButtons.forEach(button => {
+        // Add a click event listener to each delete button
         button.addEventListener('click', function () {
+            // Get the specific note ID associated with the delete button
             let noteId = this.getAttribute('data-note-id');
 
+            // Access the modal associated with the specific note ID
             let modal = M.Modal.getInstance(document.querySelector(`#modal${noteId}`));
-            modal.open();
+            modal.open(); // Open the modal for confirmation
 
+            // Locate the confirmation button within the modal
             let confirmButton = document.querySelector(`#confirm-delete-${noteId}`);
+
+            // Add a click event listener to the confirmation button
             confirmButton.addEventListener('click', function () {
+                // Send a GET request to the server to delete the note with the given noteId
                 fetch(`/delete_note/${noteId}`, {
                     method: 'GET'
                 }).then(response => {
+                    // Check if the deletion request was successful
                     if (response.ok) {
                         window.location.href = 'notes.html'; // Redirect to the notes page after successful deletion
                     } else {
                         console.error('Failed to delete the note.');
                     }
                 }).catch(error => {
-                    console.error('Error:', error);
+                    console.error('Error:', error); // Log any errors encountered during the deletion process
                 });
             });
         });

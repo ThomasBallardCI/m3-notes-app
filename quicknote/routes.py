@@ -66,18 +66,23 @@ def register():
         a GET request.
 
     """
+
     if request.method == "POST":
+        # Retrieving user registration data from the form
         email = request.form.get("email")
         first_name = request.form.get("first_name")
         last_name = request.form.get("last_name")
         password1 = request.form.get("password1")
         password2 = request.form.get("password2")
 
+        # Checking if the email already exists in the database
         user = User.query.filter_by(email=email).first()
         if user:
+            # Flash an error message if the email is already in use
             flash("Email already exists", category="error")
+        # Validating input data
         elif len(email) < 4:
-            flash("The Email must be consist of more than 3 characters",
+            flash("The Email must consist of more than 3 characters",
                   category="error")
         elif len(first_name) < 2:
             flash("The First Name must consist of more than 1 character",
@@ -91,29 +96,60 @@ def register():
             flash("The Password must be at least 7 characters",
                   category="error")
         else:
+            # Creating a new user with validated data
             new_user = User(
                 email=email,
                 first_name=first_name,
                 last_name=last_name,
                 password=generate_password_hash(password1, method="sha256"))
+            # Adding the new user to the database
             db.session.add(new_user)
             db.session.commit()
+            # Logging in the new user and redirecting to notes page
             login_user(new_user, remember=True)
             flash("Account Created!", category="success")
             return redirect(url_for("notes"))
 
+    # Render the registration template if the request method is not POST
     return render_template("register.html", user=current_user)
 
 
 @app.route("/user_management")
 @login_required
 def user_management():
+    """
+    User Management View
+
+    Description:
+        This view function displays the user management page, ensuring that the user is logged in.
+        It renders the 'user_management.html' template, providing options for user-related management.
+
+    Returns:
+        The 'user_management.html' template with the 'current_user' context for user-specific actions.
+    """
+    # Render the user management page template with the current user's context
     return render_template("user_management.html", user=current_user)
 
 
 @app.route("/delete_user/<int:user_id>", methods=['GET'])
 @login_required
 def delete_user(user_id):
+    """
+    Delete User Account
+
+    Args:
+        user_id (int): The unique identifier of the user account to be deleted.
+
+    Description:
+        This view function allows the deletion of a user account and associated notes. It first confirms if the user
+        attempting the deletion is the currently logged-in user. If the condition is met, it proceeds to delete the
+        specified user account and associated notes. If not authorized, it displays an error message and redirects to
+        the home page.
+
+    Returns:
+        - A redirection to the 'home' view after successful deletion.
+        - An error message and redirection to the 'home' view in case of unauthorized deletion attempts.
+    """
     # Check if the user attempting deletion is the currently logged-in user
     if current_user.id == user_id:
         user = User.query.get_or_404(user_id)
@@ -161,19 +197,28 @@ def login():
 
     """
     if request.method == "POST":
+        # Extracting email and password from the login form
         email = request.form.get("email")
         password = request.form.get("password")
 
+        # Retrieving the user with the provided email from the database
         user = User.query.filter_by(email=email).first()
         if user:
+            # Check if the provided password matches the stored password hash for the user
             if check_password_hash(user.password, password):
+                # Flash a success message and log in the user if authentication is successful
                 flash("Logged in Successfully!", category="success")
                 login_user(user, remember=True)
+                # Redirect to the notes page after successful login
                 return redirect(url_for("notes"))
             else:
+                # Flash an error message if the provided password is incorrect
                 flash("Incorrect Password, Try again.", category="error")
         else:
+            # Flash an error message if the email provided does not exist in the database
             flash("Email does not exist", category="error")
+
+    # Render the login template if the request method is not POST
     return render_template("login.html", user=current_user)
 
 
@@ -191,9 +236,10 @@ def logout():
 
     Returns:
         A redirection to the 'home' view after successfully logging out the user.
-
     """
+    # Logs out the currently authenticated user
     logout_user()
+    # Redirects to the 'home' view after logging out
     return redirect(url_for("home"))
 
 
@@ -212,11 +258,12 @@ def notes():
 
     Returns:
         A rendered 'notes.html' template displaying the list of notes for the user.
-
     """
+    # Fetches the notes associated with the authenticated user and arranges them by date in descending order
     notes = list(Note.query.filter_by(
         user_id=current_user.id).order_by(desc(Note.note_date)).all())
 
+    # Renders the 'notes.html' template and passes the list of notes and the current user's context for rendering
     return render_template("notes.html", notes=notes, user=current_user)
 
 
@@ -236,26 +283,34 @@ def add_note():
 
     Returns:
         A redirection to the 'notes' view after adding the new note.
-
     """
     if request.method == "POST":
+        # Retrieve note details from the form
         note_title = request.form.get("note_title")
         note_content = request.form.get("note_content")
         note_date = request.form.get("note_date")
 
+        # Validate the length of note title and content
         if len(note_title) < 1:
             flash("Title is too short!", category="error")
         elif len(note_content) < 1:
             flash("Note is too short!", category="error")
         else:
-            new_note = Note(note_content=note_content, note_title=note_title,
-                            note_date=note_date, user_id=current_user.id)
+            # Create a new note with validated data and the current user's ID
+            new_note = Note(
+                note_content=note_content,
+                note_title=note_title,
+                note_date=note_date,
+                user_id=current_user.id
+            )
 
+        # Add the new note to the database and redirect to the 'notes' view
         db.session.add(new_note)
         db.session.commit()
         return redirect(url_for("notes"))
 
-    return render_template("add_note.html",  user=current_user)
+    # Render the 'add_note.html' template for creating a new note
+    return render_template("add_note.html", user=current_user)
 
 
 @app.route("/edit_note/<int:note_id>", methods=["GET", "POST"])
@@ -277,22 +332,27 @@ def edit_note(note_id):
 
     Returns:
         A redirection to the 'notes' view, displaying the updated or unchanged note.
-
     """
+    # Retrieve the note with the given 'note_id' or return a 404 error if not found
     note = Note.query.get_or_404(note_id)
+
     if request.method == "POST":
+        # Update note details based on the form submission
         note.note_title = request.form.get("note_title")
         note.note_content = request.form.get("note_content")
 
+        # Validate the length of note title and content
         if len(note.note_title) < 1:
             flash("Title is too short!", category="error")
         elif len(note.note_content) < 1:
             flash("Note is too short!", category="error")
         else:
+            # Set the note's date to the current time and commit changes to the database
             note.note_date = datetime.now()
             db.session.commit()
-            return redirect(url_for("notes"))
+            return redirect(url_for("notes"))  # Redirect to the 'notes' view after editing
 
+    # Render the 'edit_note.html' template to allow users to edit the selected note
     return render_template("edit_note.html", note=note, user=current_user)
 
 
