@@ -5,7 +5,57 @@
 
 <!-- main page content block -->
 {% block content %}
-
-<h1>this is the Home page</h1>
-
+<div class="container">
+    <div class="row">
+        <div class="col s12 l6">
+            <div>
+                <h1>WELCOME TO QUICK NOTES</h1>
+            </div>
+            <div>
+                <h4>Register Below To Get Started</h4>
+            </div>
+        </div>
+        <div class="col s12 l6">
+            <div class="section"></div>
+            <div>
+                <p class="center-align">Register Below To Get Started</p>
+            </div>
+            <form class="col s12 card-panel center-align" method="POST">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="email" name="email" type="email" class="validate">
+                        <label for="email">Email</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="first_name" name="first_name" type="text" class="validate">
+                        <label for="first_name">First Name</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input id="last_name" name="last_name" type="text" class="validate">
+                        <label for="last_name">Last Name</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="password1" name="password1" type="password" class="validate">
+                        <label for="password1">Password</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="password2" name="password2" type="password" class="validate">
+                        <label for="password2">Password (Confirm)</label>
+                    </div>
+                </div>
+                <button class="btn waves-effect waves-light purple darken-4" type="submit" name="action">Submit
+                    <i class="material-icons right">send</i>
+                </button>
+                <div class="section"></div>
+            </form>
+            <h6 class="center-align">Already have an account? <a href="{{ url_for('login') }}">login here!</a></h6>
+        </div> 
+        </div>
+</div>
 {% endblock %}
