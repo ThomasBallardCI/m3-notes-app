@@ -111,13 +111,35 @@ def user_management():
     return render_template("user_management.html", user=current_user)
 
 
-@app.route("/delete_user/<int:user_id>")
+@app.route("/delete_user/<int:user_id>", methods=['GET'])
 @login_required
 def delete_user(user_id):
-    user = User.query.get_or_404(user_id)
-    db.session.delete(user)
-    db.session.commit()
-    return redirect(url_for("home"))
+    # Check if the user attempting deletion is the currently logged-in user
+    if current_user.id == user_id:
+        user = User.query.get_or_404(user_id)
+
+        # Fetch and delete associated notes
+        notes = Note.query.filter_by(user_id=user_id).all()
+        for note in notes:
+            db.session.delete(note)
+
+        # Delete the user's account after deleting associated data (like notes)
+        db.session.delete(user)
+        db.session.commit()
+
+        # Log out the user after deleting their account
+        logout_user()
+
+        # Flash a message to inform the user about the deletion
+        flash(
+            "Your account and associated notes have been"
+            "successfully deleted.", category="success")
+
+        return redirect(url_for("home"))
+    else:
+        # Handle unauthorized deletion attempts
+        flash("You are not authorized to delete this user account.")
+        return redirect(url_for("home"))
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -278,6 +300,13 @@ def edit_note(note_id):
 @login_required
 def delete_note(note_id):
     note = Note.query.get_or_404(note_id)
-    db.session.delete(note)
-    db.session.commit()
-    return redirect(url_for("notes"))
+
+    # Check if the note belongs to the logged-in user
+    if note.user_id == current_user.id:
+        db.session.delete(note)
+        db.session.commit()
+        return redirect(url_for("notes"))
+    else:
+        # If the note does not belong to the logged-in user, handle unauthorized deletion
+        flash("You are not authorized to delete this note.")
+        return redirect(url_for("notes"))
