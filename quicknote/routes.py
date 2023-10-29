@@ -359,6 +359,19 @@ def edit_note(note_id):
 @app.route("/delete_note/<int:note_id>")
 @login_required
 def delete_note(note_id):
+    """
+    Delete a note based on the provided note_id.
+
+    Parameters:
+    note_id (int): The unique identifier of the note to be deleted.
+
+    Returns:
+    A redirection to the 'notes' route upon successful deletion.
+    If the note does not belong to the logged-in user, it flashes a message indicating lack of authorization and redirects to the 'notes' route.
+
+    Note:
+    This function requires the user to be logged in ('@login_required') to delete a note.
+    """
     note = Note.query.get_or_404(note_id)
 
     # Check if the note belongs to the logged-in user
