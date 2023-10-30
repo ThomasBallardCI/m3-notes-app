@@ -1,36 +1,41 @@
 {% extends "base.html" %}
 
-<!-- page title block -->
-{% block title %} Notes {% endblock %}
+<!-- This block sets the title of the page to 'New Note' -->
+{% block title %} New Note {% endblock %}
 
-<!-- main page content block -->
+<!-- This block contains the main content of the page -->
 {% block content %}
 
-<h1 class="black-text center-align">New Note</h1>
-<div class="container">
-    <div class="row card-panel s12">
-        <form class="col s12" method="POST" action="{{ url_for('add_note') }}">
-            <!-- task name -->
+<!-- Page Header -->
+<h1 class="black-text center-align" aria-label="New Note Title">New Note</h1>
+
+<!-- Form section to add note -->
+<div class="container" role="main">
+    <div class="row card-panel s12" aria-label="New Note Panel">
+        <form class="col s12" method="POST" action="{{ url_for('add_note') }}" role="form" aria-label="New Note Form">
+            <!-- Input field for the note title -->
             <div class="row">
                 <div class="input-field col s12">
-                    <i class="material-icons prefix purple-text text-darken-4">mode_edit</i>
-                    <input id="note_title" name="note_title" minlength="5" maxlength="30" type="text" class="validate" required>
-                    <label for="note_title">Title</label>
+                    <i class="material-icons prefix purple-text text-darken-4" aria-hidden="true">mode_edit</i>
+                    <input id="note_title" name="note_title" minlength="1" type="text" class="validate" required aria-label="Note Title Input">
+                    <label for="note_title" aria-label="Title">Title</label>
                 </div>
             </div>
-            <!-- task description -->
+
+            <!-- Input field for the note content -->
             <div class="row">
                 <div class="input-field col s12">
-                    <i class="material-icons prefix purple-text text-darken-4">description</i>
-                    <textarea id="note_content" name="note_content" class="materialize-textarea"></textarea>
-                    <label for="note_content">Content</label>
+                    <i class="material-icons prefix purple-text text-darken-4" aria-hidden="true">description</i>
+                    <textarea id="note_content" name="note_content" class="materialize-textarea" minlength="1" aria-label="Note Content"></textarea>
+                    <label for="note_content" aria-label="Content">Content</label>
                 </div>
             </div>
-            <!-- submit button -->
+
+            <!-- Submit button for adding a note -->
             <div class="row">
                 <div class="col s12 center-align">
-                    <a class="waves-effect waves-purple btn white purple-text text-darken-4 hoverable" href="{{ url_for('notes') }}">Cancel</a>
-                    <button type="submit" class="btn purple darken-4 hoverable">Add Note</button>
+                    <a class="waves-effect waves-purple btn white purple-text text-darken-4 hoverable" href="{{ url_for('notes') }}" aria-label="Cancel">Cancel</a>
+                    <button type="submit" class="btn purple darken-4 hoverable" aria-label="Add Note">Add Note</button>
                 </div>
             </div>
         </form>

@@ -241,6 +241,8 @@ def logout():
     """
     # Logs out the currently authenticated user
     logout_user()
+    # Flash message for successful logout
+    flash('You have been logged out successfully!', category="success")
     # Redirects to the 'home' view after logging out
     return redirect(url_for("home"))
 
@@ -383,5 +385,5 @@ def delete_note(note_id):
         return redirect(url_for("notes"))
     else:
         # If the note does not belong to the logged-in user, handle unauthorized deletion
-        flash("You are not authorized to delete this note.")
+        flash("You are not authorized to delete this note.", category="error")
         return redirect(url_for("notes"))

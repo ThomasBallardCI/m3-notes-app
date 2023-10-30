@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
-
-
 /* Sticky Footer */
 body {
     display: flex;
@@ -13,23 +11,23 @@ main {
     flex: 1 0 auto;
 }
 
-/* label focus color */
+/* Styling for label focus color */
 .input-field input:focus+label, textarea:focus+label {
     color: #4a148c !important;
 }
 
-/* label underline focus color */
+/* Styling for label underline focus color */
 .row .input-field input:focus, textarea:focus {
     border-bottom: 1px solid #4a148c !important;
     box-shadow: 0 1px 0 0 #4a148c !important;
 }
 
-/* hyperlink text color */
+/* Styling for hyperlink text color */
 a {
     color: #4a148c;
 }
 
-/* flash messages alert styling */
+/* Styling for flash messages alert styling */
 .card-alert button {
     background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
     border: medium none;
@@ -52,17 +50,19 @@ a {
     text-decoration: underline;
 }
 
-/* dateTime styling to the right of collapsible */
+/* Styling for DateTime to the right of collapsible */
 .date-right {
     margin-right: 0;
     margin-left: auto;
     font-size: small;
 }
 
+/* Styling for H1's */
 h1 {
     font-weight: 800;
 }
 
+/* Styling for specific text elements */
 .sub-text {
     font-weight: 500;
     font-size: 1.5em;
@@ -72,18 +72,22 @@ h1 {
     font-weight: 500;
 }
 
+/* Styling for register below specific text */
 .register-below {
     font-weight: 500;
 }
 
-.register-below, .login-here {
+/* Styling for registration, login, and account creation text */
+.register-below, .login-here, .register-here{
     font-size: 1.1em;
 }
 
+/* Styling for base.html navbar logo */
 .brand-logo {
     font-weight: 800;
 }
 
+/* Syling for card titles */
 .card-title {
     font-weight: 500;
     font-size: 2em;

@@ -1,34 +1,40 @@
 {% extends "base.html" %}
 
-<!-- page title block -->
+<!-- This block sets the title of the page to 'Login' -->
 {% block title %} Login {% endblock %}
 
-<!-- main page content block -->
+<!-- This block contains the main content of the page -->
 {% block content %}
 
-
 <div class="container center-align">
-    <h1 class="section">Welcome Back to Quick Notes</h1>
+    <h1 class="section" aria-label="Welcome Back to Quick Notes">Welcome Back to Quick Notes</h1>
     <form class="col s12 section card-panel" method="POST">
-        <span class="card-title">Login To Access Notes</span>
+        <span class="card-title" aria-label="Login Title">Login To Access Notes</span>
         <div class="row section">
             <div class="input-field col s12">
-                <input id="email" type="email" class="validate" name="email">
+                <!-- Email Input Field -->
+                <input id="email" type="email" class="validate" name="email" aria-label="Email Input">
                 <label for="email">Email</label>
             </div>
         </div>
+
         <div class="row">
             <div class="input-field col s12">
-                <input id="password" type="password" class="validate" name="password">
+                <!-- Password Input Field -->
+                <input id="password" type="password" class="validate" name="password" aria-label="Password Input">
                 <label for="password">Password</label>
             </div>
         </div>
-        <button class="btn waves-effect waves-light purple darken-4 hoverable" type="submit" name="action">Submit
+
+        <!-- Submit Button -->
+        <button class="btn waves-effect waves-light purple darken-4 hoverable" type="submit" name="action" aria-label="Submit Login Form">Submit
             <i class="material-icons right">send</i>
         </button>
     </form>
-    <div>
-        <h6>Don't have an account? <a href="{{ url_for('home') }}">Register Here!</a></h6>
+
+    <!--Register Link -->
+    <div aria-label="Register Section">
+        <p class="center-align register-here">Don't have an account? <a href="{{ url_for('home') }}" aria-label="Register Link">Register Here!</a></p>
     </div>
 </div>
 

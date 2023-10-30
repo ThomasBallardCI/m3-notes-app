@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var cardButtons = document.querySelectorAll('.card-alert > button');
     for (var i = 0; i < cardButtons.length; i++) {
         cardButtons[i].addEventListener('click', function () {
+            // Hide the flash message card
             var cardAlert = this.closest('div.card-alert');
             if (cardAlert) {
                 cardAlert.style.transition = 'opacity 0.5s';
@@ -25,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
         i18n: {done: "Select"}
     });
 
+    // Collapsibles initialization
     let collapsibles = document.querySelectorAll('.collapsible');
     M.Collapsible.init(collapsibles);
 
@@ -32,6 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let modals = document.querySelectorAll('.modal');
     M.Modal.init(modals);
 
+    // Delete specific notes based on note.id
     // Select all elements with the class 'delete-button'
     let deleteButtons = document.querySelectorAll('.delete-button');
 
