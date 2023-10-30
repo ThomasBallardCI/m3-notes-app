@@ -28,7 +28,7 @@ from quicknote import app, db
 from quicknote.models import User, Note
 
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def home():
     """
     Route function for handling user registration and redirection.
