@@ -14,18 +14,14 @@ main {
 }
 
 /* label focus color */
-.input-field input:focus+label {
+.input-field input:focus+label, textarea:focus+label {
     color: #4a148c !important;
 }
 
 /* label underline focus color */
-.row .input-field input:focus {
+.row .input-field input:focus, textarea:focus {
     border-bottom: 1px solid #4a148c !important;
     box-shadow: 0 1px 0 0 #4a148c !important;
-}
-
-textarea {
-    color: #4a148c !important;
 }
 
 /* hyperlink text color */
