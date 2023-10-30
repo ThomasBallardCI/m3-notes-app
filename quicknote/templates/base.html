@@ -13,20 +13,18 @@
 
     <header>
         <!-- top navbar -->
-        <nav class="grey lighten-3">
-            <div class="nav-wrapper">
+        <nav class="white">
+            <div class="nav-wrapper container">
                 <a href="{{ url_for('home') }}" class="brand-logo black-text">Quick Notes</a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger black-text"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     {% if user.is_authenticated %}
-                    <li><a class="black-text" href="{{ url_for('home') }}">Home</a></li>
                     <li><a class="black-text" href="{{ url_for('notes') }}">Notes</a></li>
                     <li><a class="black-text" href="{{ url_for('user_management') }}">Account</a></li>
                     <li><a class="black-text" href="{{ url_for('logout') }}">Logout</a></li>
                     {% else %}
                     <li><a class="black-text" href="{{ url_for('home') }}">Home</a></li>
                     <li><a class="black-text" href="{{ url_for('login') }}">Login</a></li>
-                    <li><a class="black-text" href="{{ url_for('register') }}">Register</a></li>
                     {% endif %}
                 </ul>
             </div>
@@ -35,14 +33,12 @@
         <!-- mobile sidenav -->
         <ul class="sidenav" id="mobile-demo">
             {% if user.is_authenticated %}
-            <li><a href="{{ url_for('home') }}">Home</a></li>
             <li><a href="{{ url_for('notes') }}">Notes</a></li>
             <li><a href="{{ url_for('user_management') }}">Account</a></li>
             <li><a href="{{ url_for('logout') }}">Logout</a></li>
             {% else %}
             <li><a href="{{ url_for('home') }}">Home</a></li>
             <li><a href="{{ url_for('login') }}">Login</a></li>
-            <li><a href="{{ url_for('register') }}">Register</a></li>
             {% endif %}
         </ul>
     </header>
@@ -89,8 +85,8 @@
         {% endblock %}
     </main>
 
-    <footer class="page-footer grey lighten-3">
-        <div class="footer-copyright">
+    <footer class="page-footer white">
+        <div class="footer-copyright white">
             <div class="container black-text">
                 © 2023 Copyright Thomas Ballard
                 <a class="black-text right" href="https://github.com/ThomasBallardCI/m3-notes-app" target="_blank">GitHub</a>

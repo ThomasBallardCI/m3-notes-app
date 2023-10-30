@@ -9,9 +9,8 @@
 
 <div class="container center-align">
     <h1 class="section">Welcome Back to Quick Notes</h1>
-    <div class="divider"></div>
-    <h4>Login Below To Access Your Notes</h4>
-    <form class="col s12 section" method="POST">
+    <form class="col s12 section card-panel" method="POST">
+        <span class="card-title">Login To Access Notes</span>
         <div class="row section">
             <div class="input-field col s12">
                 <input id="email" type="email" class="validate" name="email">
@@ -29,7 +28,7 @@
         </button>
     </form>
     <div>
-        <h6>Don't have an account? <a href="{{ url_for('register') }}">Register Here!</a></h6>
+        <h6>Don't have an account? <a href="{{ url_for('home') }}">Register Here!</a></h6>
     </div>
 </div>
 

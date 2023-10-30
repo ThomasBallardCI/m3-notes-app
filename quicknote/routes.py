@@ -31,41 +31,43 @@ from quicknote.models import User, Note
 @app.route("/")
 def home():
     """
-    Display the home page of the application.
+    Route function for handling user registration and redirection.
 
-    Description:
-        This view function is responsible for rendering the home page of the application.
-        It is the landing page that users see when they visit the site. The function
-        simply returns the 'home.html' template, and it may also pass the 'current_user'
-        object for context.
-
-    Returns:
-        The 'home.html' template, serving as the main page of the application.
-
-    """
-    return render_template("home.html", user=current_user)
-
-
-@app.route("/register", methods=["GET", "POST"])
-def register():
-    """
-    Register a new user or display the registration page.
-
-    Description:
-        This view function handles user registration. If the HTTP request method is
-        POST, it processes the user's registration details, including email, first
-        name, last name, and passwords. It validates the input data and, if all
-        requirements are met, creates a new user account and logs them in. If the email
-        is already in use or any of the input data is invalid, appropriate flash
-        messages are displayed. If the request method is GET, it displays the
-        registration page for users to enter their details.
+    If the current user is authenticated, redirects to the 'notes' page.
+    If the request method is POST, it retrieves user registration data from the form,
+    validates the input, and creates a new user if the data is valid.
+    If the email provided already exists in the database, it flashes an error message. 
+    Otherwise, it checks and validates the input data such as email, first name, last name, and passwords.
+    If all validations pass, a new user is created, added to the database, and the user is logged in.
+    It then redirects to the 'notes' page after a successful account creation.
 
     Returns:
-        A redirection to the 'notes' view after successful registration or the
-        'register.html' template for entering registration details in the case of
-        a GET request.
+        If the user is already authenticated, redirects to 'notes'.
+        If the request method is POST and all input validations pass, redirects to 'notes' after account creation.
+        Otherwise, renders the 'home.html' template for user registration.
 
+    Dependencies:
+        - current_user: User authentication status.
+        - request: Retrieves form data and method type (POST).
+        - redirect: Redirects to a specified route.
+        - url_for: Generates URLs for a specific function.
+        - flash: Displays flashed messages for different categories (success or error).
+        - User: Represents the User model for interaction with the database.
+        - generate_password_hash: Hashes the user's password for security.
+        - login_user: Logs in the user.
+        - db: Represents the database session.
+        - render_template: Renders the HTML template for user registration.
+
+    HTML Templates:
+        - 'home.html': Contains the user registration form.
+
+    Note:
+        - This function assumes the existence of a User model and an 'home.html' template.
+        - It employs Flask and its extensions for web functionalities.
     """
+    if current_user.is_authenticated:
+        # If the user is already logged in, redirect to the notes page
+        return redirect(url_for("notes"))
 
     if request.method == "POST":
         # Retrieving user registration data from the form
@@ -111,7 +113,7 @@ def register():
             return redirect(url_for("notes"))
 
     # Render the registration template if the request method is not POST
-    return render_template("register.html", user=current_user)
+    return render_template("home.html", user=current_user)
 
 
 @app.route("/user_management")
