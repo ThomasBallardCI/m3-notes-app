@@ -1,110 +1,342 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# QuickNotes
 
-Welcome ThomasBallardCI,
+This Flask-based web application was developed to offer users a swift, simple, efficient, and secure online platform for storing notes.
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+!["Am I Responsive" image](docs/supp-images/amiresponsive.jpg)
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+[View the Live project here](https://quicknote-milestone3-ci-b9aeeb595db7.herokuapp.com/)
 
-## Gitpod Reminders
+## Table of Contents
+1. [User Experience](#user-experience)
+2. [Features](#features)
+3. [Design](#design)
+4. [Technologies Used](#technologies-used)
+5. [Deployment and Local Development](#deployment-&-local-development)
+6. [Testing](#testing)
+7. [Credits](#credits)
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+## User Experience
 
-`python3 -m http.server`
+### Key information for the site
 
-A blue button should appear to click: _Make Public_,
+* Create a unique account and securely save notes.
+* Allows users to create, view, edit, and delete notes that are specific to them at any time.
+* Notes are sorted by the newest or most recently edited, from top to bottom, based on date and time.
+* Accessible on multiple devices via the device's web browser (Desktop, Tablet, and Mobile) to access notes while on the move.
 
-Another blue button should appear to click: _Open Browser_.
+### User Stories
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+#### Client Goals
 
-A blue button should appear to click: _Make Public_,
+* To create, edit, view, delete, and store notes easily and quickly.
+* To be able to view notes on multiple platforms.
 
-Another blue button should appear to click: _Open Browser_.
+#### First Time Visitor Goals
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+* To be able to easily create an account and create their first note.
+* To understand how to edit and delete the users' notes.
+* To be able to quickly and easily view their notes.
+* To be able to easily understand how to delete their account if needed.
 
-To log into the Heroku toolbelt CLI:
+##### Returning Visitor Goals
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+* To be able to return to the site to view, edit, and delete their notes.
+* To be able to delete their account and notes if they wish.
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+## Features
 
-------
+### Existing Features
 
-## Release History
+- __Landing/Welcome Page__
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+  - The welcome page is designed to provide the user with a brief summary of the app and a clear registration form to sign up directly from the page or click the 'Login!' link to log in to an existing account.
 
-**September 20 2023:** Update Python version to 3.9.17.
+- __Notes Page__
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+  - The Notes page is designed to provide the user with a clear and easily accessible button for creating a new note. Once the notes are created, they are displayed to the user within a collapsible element. This display includes the note's title and creation date, allowing the user to expand their preferred note for editing, deletion, or viewing its contents. This design aims to maximize the efficient use of the available screen space.
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+- __Edit Note Page__
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+  - The Edit page is designed to enable the user to edit the title and content of a chosen specific note, updating the existing note and moving it to the top of the notes page.
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+- __Delete Notes__
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+  - The 'Delete Notes' button opens a modal to prompt user confirmation for deletion, ensuring a reduction in accidental deletion of notes.
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+- __Account Page__
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+  - The Account page is a simple interface that allows the user to delete their account and the corresponding notes. It provides straightforward instructions, a warning, and two buttons: 'Back to Notes' and 'Delete Account.' When the user selects 'Delete Account,' a confirmation modal will appear to reduce the risk of accidental deletion before the account is permanently removed. The 'Back to Notes' button, alternatively, directs the user back to their notes page.
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+- __Modals__
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+  - Modals are used to confirm user actions, serving to reduce the likelihood of accidental actions by the user. They are implemented for functions such as note deletion, account deletion, and logging out.
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+### Future Features
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+- __Search Notes__
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+  - Given additional time or as an update to the app, I believe a valuable addition would be to grant users the ability to search their notes using keywords. This feature would greatly assist in easily locating specific notes, especially for users managing a large volume of stored notes.
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+- __Set Notes to Important__
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+  - Given more time or as an update to the app, I believe that enabling users to mark and set notes as important, always displaying them at the top, would greatly enhance the app's value and user experience.
 
-------
+## Design
 
-## FAQ about the uptime script
+### Initial Concept
+The primary design concept aimed to create a clear and easily readable website with high contrast. It includes a splash of colour for highlighting key points and buttons, providing users with a clean, crisp, and easy-to-navigate experience.
 
-**Why have you added this script?**
+### Colour Scheme
+The chosen neutral colour scheme of whites and blacks, along with drop shadows, and the use of Indigo for action buttons and links, was selected to improve visual clarity while maintaining a clean and modern aesthetic.
+!["Colour Scheme" image](docs/supp-images/colourpalette.jpg)
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+### Typography
+["Roboto"](https://fonts.google.com/specimen/Roboto) The font is the default font used by Materialize CSS. It is a modern, easily readable, and widely used typeface.
 
-**How will this affect me?**
+### Wireframes
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+#### Welcome/Home Desktop
+!["Desktop Home Wireframe" image](docs/wireframes/home.jpg)
+#### Welcome/Home Mobile and Tablet
+!["Tablet and Mobile Home Wireframe" image](docs/wireframes/tablet_mobile_home.jpg)
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+#### Notes Desktop
+!["Desktop Notes Wireframe" image](docs/wireframes/notes.jpg)
+#### Notes Tablet and Mobile
+!["Tablets and Mobile Wireframe" image](docs/wireframes/tablet_mobile_notes.jpg)
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+#### Add Note/Edit Note Desktop
+!["Desktop Add/Edit Note Wireframe" image](docs/wireframes/edit_note.jpg)
+#### Add Note/Edit Note Mobile and Tablet
+!["Mobile and Tablet Add/Edit Note Wireframe" image](docs/wireframes/tablet_mobile_add_edit_note.jpg)
 
-**So….?**
+#### Login Desktop
+!["Desktop Login Wireframe" image](docs/wireframes/login.jpg)
+#### Login Tablet and Mobile
+!["Mobile and Tablet Login Wireframe" image](docs/wireframes/tablet_mobile_login.jpg)
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+#### Account Desktop
+!["Desktop Account Wireframe" image](docs/wireframes/account.jpg)
+#### Account Tablet and Mobile
+!["Mobile and Tablet Wireframe" image](docs/wireframes/tablet_mobile_account.jpg)
 
-**Can I opt out?**
+### Finalised Design
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
+#### Home
+!["Final Home" image](docs/supp-images/home.jpg)
 
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
+#### Login
+!["Final Login" image](docs/supp-images/login.jpg)
 
-**Anything more?**
+#### Notes
+!["Final Notes" image](docs/supp-images/notes.jpg)
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
+#### Add Note
+!["Final Add Note" image](docs/supp-images/add_note.jpg)
 
----
+#### Edit Note
+!["Final Edit Note" image](docs/supp-images/edit_note.jpg)
 
-Happy coding!
+#### Account
+!["Final Acount" image](docs/supp-images/account.jpg)
+
+#### Delete Note Modal
+!["Final Delete Note Modal" image](docs/supp-images/delete_note_modal.jpg)
+
+#### Delete Account Modal
+!["Final Delete Modal" image](docs/supp-images/delete_account_modal.jpg)
+
+#### Logout Modal
+!["Final Logout Modal" image](docs/supp-images/logout_modal.jpg)
+
+## Technologies Used
+
+### Languages Used
+
+- [HTML5](https://en.wikipedia.org/wiki/HTML5)
+- [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
+- [Java Script](https://en.wikipedia.org/wiki/JavaScript)
+- [Python](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox)
+
+### Frameworks, Libraries & Programs Used
+
+- [Materialize CSS:](https://materializecss.com/) A modern responsive front-end framework based on Material Design.
+
+- [Gitpod.io](https://code.visualstudio.com/) Used to write the website code.
+
+- [GitHub:](https://www.github.com/) Used as the repository for the project's code after being pushed from Gitpod.io.
+
+- [Adobe XD](https://www.adobe.com/creativecloud.html) Used to create the wireframes during the design process.
+
+- [Flask](https://flask.palletsprojects.com/en/3.0.x/) Flask is a lightweight and flexible web framework written in Python. It is designed to make building web applications and APIs straightforward and easy. Flask provides the tools and libraries that allow developers to create web applications without the need for complex setups. It is known for its simplicity, extensibility, and ease of use, making it a popular choice for developing web applications in Python.
+
+- [Jinja](https://jinja.palletsprojects.com/en/3.1.x/) As template engine.
+
+- [SQLAlchemy](https://www.sqlalchemy.org/) SQLAlchemy is the Python SQL toolkit and Object Relational Mapper that gives application developers the full power and flexibility of SQL. It provides a full suite of well known enterprise-level persistence patterns, designed for efficient and high-performing database access, adapted into a simple and Pythonic domain language.
+
+- [Heroku](https://www.heroku.com) For deployment.
+
+- [ElephantSQL](https://www.elephantsql.com/) For Database management.
+
+- [Google Dev Tools](https://developer.chrome.com/docs/devtools/) For troubleshooting, testing features and solving issues with responsiveness and styling.
+
+- [Am I Responsive?](https://ui.dev/amiresponsive) To show the website image on a range of devices.
+
+### Data Schema
+
+## Deployment & Local Development
+
+### Deployment
+
+This project was deployed to GitHub Pages using the following steps:
+
+1. Log into GitHub and locate the [GitHub Repository](https://github.com/ThomasBallardCI/M2-Skate-Selection-Quiz).
+2. Click the settings button (above the "add file" button).
+3. Click on "Pages" on the left-hand-side column.
+4. Under "Source", click the dropdown called "Main", select folder ""/root" and click "save".
+5. Refresh the page.
+6. Click on the "Visit site" button at the top of the page.
+
+### Local Deployment
+
+#### How to Fork
+
+To fork the Brain Worms repository:
+
+1. Log in (or sign up) to GitHub.
+2. Go to the repository for this project, at [GitHub Repository](https://github.com/ThomasBallardCI/M2-Skate-Selection-Quiz).
+3. Click the Fork button in the top right corner.
+
+#### How to Clone
+
+To clone the Brain Worms repository:
+
+1. Log in (or sign up) to GitHub.
+2. Go to the repository for this project, at [GitHub Repository](https://github.com/ThomasBallardCI/M2-Skate-Selection-Quiz).
+3. Above the list of files, click "Code".
+4. Click "Open with GitHub Desktop" to clone and open the repository with GitHub Desktop.
+5. Click "Choose..." and, using Windows Explorer, navigate to a local path where you want to clone the repository.
+6. Click "Clone".
+
+## Testing
+
+Testing was an ongoing process as I built out the questionnaire, utilizing Chrome Developer Tools with console logging to ensure I was getting the required responses from the code as it was written.
+There are two types of testing methods available: 'Manual' and 'Automated.' Both have been used in some form throughout the creation of the website questionnaire.
+
+- __Manual Testing__ Is done by an individual to see if they can use the product in a way that creates, finds, and results in bugs, or not, to ensure it behaves correctly for the user when pushed live.
+
+- __Automated Testing__ Is done by means of an automation framework or another tool or software suite to check for errors and bugs in code.
+
+### Solved Bugs
+
+- The hover effect was persistent across mobile and tablet devices and remained on the previously selected option during the questionnaire.
+
+  - Fix: Used a media query (Pointer: fine) with the hover styling placed in to only target devices with an accurate pointer (like a mouse or stylus).
+
+- The Name Input field allowed non-alphanumeric values.
+
+  - Fix: Added code to JS to check that the user inputs only alphanumeric characters into the name field and, if not, alerts the user to provide a name containing them.
+
+- The background blur was not applying on iPad OS/Safari browser.
+
+  - Fix: Added a -webkit- CSS line to specifically target Safari and apply the blur.
+
+### Known Bugs
+
+- Firefox is not displaying the 'Manrope' font correctly and defaulting to sans-serif. Unsure of the reasoning and due to time constraints, could not find and implement a fix in time for submission.
+
+### Validator Testing
+
+#### [HTML Validator](https://validator.w3.org/)
+
+  - __Result for Index.html (Whole site HTML)__
+
+    Two warnings appear for the H1 and H2 headings. This is the result of those headings being populated by JS rather than HTML directly.
+    ![HTML Results index.html](documentation/validation-results/htmlvalidation.jpg)
+
+#### [CSS Validator](https://jigsaw.w3.org/css-validator/)
+
+  - __Results for Style.css__
+
+    ![CSS Results style.css](documentation/validation-results/cssvalidation.jpg)
+
+#### [Lighthouse Validaton](https://developer.chrome.com/docs/lighthouse/overview/)
+  
+  - __Desktop__
+
+    ![Desktop Lighthouse](documentation/validation-results/desktoplighthouse.jpg)
+
+  - __Mobile__
+
+    ![Mobile Lighthouse](documentation/validation-results/mobilelighthouse.jpg)
+
+#### [JSLint](https://jslint.com)
+
+  - __Data.js__
+    
+    ![JSLint data.js](documentation/validation-results/jslintdata.jpg)
+
+
+  - __Sctipt.js__
+    I added "document, alert, location" to the imported globals field due to them being provided by the browser environment. I also added "question and skateSuggest" as they are in the data.js file. I instructed it to allow whitespace for preference on how the code looks for readability, as well as length due to comments being longer than 80 characters.
+    ![JSLint script.js](documentation/validation-results/jslintscript.jpg)
+
+### Manual Testing
+
+All manual testing was carried out by myself and a few friends on various devices and browsers.
+
+__Desktop__
+- Chrome Version 114.0.5735.199 (Official Build) (64-bit)
+- Firefox Version 115.0.2 (64-bit)
+- Microsoft Edge4 Version 114.0.1823.82 (Official Build) (64-bit)
+
+__Mobile__
+- Samsung Galaxy S21+
+- One UI Version 5.1/Android 13
+- Chrome Version 114.0.5735.196
+
+__Tablet__
+- Apple Ipad Pro 13" 2021 - iPadOS Version 16.5.1
+- Safari Version 16.0
+
+### Test Cases and Results
+  - Chrome Developer tools were used to fully test the site and its functionality throughout the development process, in combination with console logs as code was written, to ensure it was functioning correctly. The Chrome Developer tools were also used to test responsiveness for mobile and tablet device-specific styling before moving on to functionality testing on those devices physically.
+
+#### Button
+  - Testing of all buttons was carried out on all platforms to ensure they took you to the relevant next section, checked and logged the information required correctly or restarted the quiz entirely, with the questionnaire buttons being checked in all 27 possible combinations.
+
+#### Input Field
+  - Testing of the input field was done by passing it non-alphanumeric values at various stages of the 'Names' characters during input to ensure the code would trigger and send an alert to the user, notifying them that only alphanumeric characters are permitted.
+  - Testing of the name being logged for use when the begin quiz button was pressed and the user had used only alphanumerical characters between 2 and 30 characters long was done via the Chrome DevTools and console logging the value pushed to the username variable.
+
+## Credits
+
+- [Locoskates.co.uk](https://Locoskates.co.uk) For the resized marketing images of the inline skates used.
+
+- [Caniuse.com](https://caniuse.com/css-backdrop-filter) For CSS Backdrop filter compatibility with Safari.
+
+- [StackOverFlow](https://stackoverflow.com/questions/73967974/disable-css-hover-when-touch-end-in-touch-device) To block the hover effects on mobile and tablet devices.
+
+- [StackOverFlow](https://stackoverflow.com/questions/13183421/how-to-change-placeholder-color-on-focus) Changing placeholder font colour for input field.
+
+- [Geeksforgeeks](https://www.geeksforgeeks.org/what-is-mouse-down-selector-in-css/) Creating a 'pressed in' effect on button press for desktop.
+
+- [Plainenglish.io](https://javascript.plainenglish.io/how-to-get-the-id-of-the-clicked-element-in-the-javascript-click-handler-8ca398d848d6) For help with initially getting the ID of the question button selected by the logged-in user.
+
+- [W3Schools]( https://www.w3schools.com/css/css3_flexbox.asp) For help with Flexbox. 
+
+- [W3Schools](https://www.w3schools.com/tags/att_input_type_submit.asp) Help with submit button.
+
+- [W3Schools](https://www.w3schools.com/css/css_form.asp) Text area styling for user name input field 
+
+- [W3Schools](https://www.w3schools.com/jsref/met_win_alert.asp) Alerting user to incorrect name input.
+
+- [Flexiple.com](https://flexiple.com/javascript/javascript-capitalize-first-letter/) Forcing user input to be uppercase on the first letter, regardless of the user's input when called on the results page.
+
+- [Shecodes.io](https://www.shecodes.io/athena/8931-creating-a-string-with-variables-in-javascript) Help with stringing together username and results information on the results page.
+
+- [educba](https://www.educba.com/clear-cache-javascript/) Help with clearing the username and stored results upon restart after clearing the cache.
+
+Massive thanks to my tutor, Elaine Roche, for helping with suggestions for the code for the next question function to work correctly and checking user input is alphanumeric, as well as all the other support and brainstorming on ideas.
+
+Massive thanks to my September 2022 Cohort group for helping with testing and peer reviewing my code.
