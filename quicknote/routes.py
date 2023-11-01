@@ -36,7 +36,7 @@ def home():
     If the current user is authenticated, redirects to the 'notes' page.
     If the request method is POST, it retrieves user registration data from the form,
     validates the input, and creates a new user if the data is valid.
-    If the email provided already exists in the database, it flashes an error message. 
+    If the email provided already exists in the database, it flashes an error message.
     Otherwise, it checks and validates the input data such as email, first name, last name, and passwords.
     If all validations pass, a new user is created, added to the database, and the user is logged in.
     It then redirects to the 'notes' page after a successful account creation.

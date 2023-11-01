@@ -8,7 +8,7 @@
 
 <div class="container center-align">
     <!-- Page Header -->
-    <h1 class="section" aria-label="Account Management">Account Management</h1>
+    <h1 class="section center-align" aria-label="Account Management">Account Management</h1>
     <div class="row">
         <div class="col s12 center-align">
             <div class="card">
@@ -19,14 +19,14 @@
                     </span>
                     <!-- Delete account message -->
                     <h4>Click below to delete your Quick Notes account</h4>
-                    <p class="red-text" aria-label="Delete Warning">*Deleting your account will delete and remove all saved notes*</p>
+                    <p class="red-text">*Deleting your account will delete and remove all saved notes*</p>
                 </div>
 
                 <div class="card-action">
                     <!-- Button to go back to Notes page -->
                     <a class="waves-effect waves-light btn purple darken-4 hoverable" href="{{ url_for('notes') }}" aria-label="Back to Notes">Back to Notes</a>
                     <!-- Button to open the Delete Account modal -->
-                    <a class="waves-effect waves-light btn red user-delete-button hoverable modal-trigger" href="#delete-account-modal" aria-label="Delete Account">Delete Account</a>
+                    <a class="waves-effect waves-light btn red user-delete-button hoverable modal-trigger right-align" href="#delete-account-modal" aria-label="Delete Account">Delete Account</a>
                 </div>
             </div>
         </div>

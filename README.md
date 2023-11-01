@@ -182,104 +182,203 @@ The chosen neutral colour scheme of whites and blacks, along with drop shadows, 
 
 - [Am I Responsive?](https://ui.dev/amiresponsive) To show the website image on a range of devices.
 
+- [ChatGPT](https://chat.openai.com/auth/login?__cf_chl_tk=es6WNeW552xBln0pp6cNWhIQGjibV3CXv18aDZgeBCc-1681910385-0-gaNycGzNGns) Used to Docstring code for better understand and myself in the future coming back to project.
+
 ### Data Schema
+
+- User:
+    - id (primary key)
+    - first_name
+    - last_name
+    - email
+    - password (hashed)
+    - notes (relationship)
+
+- Note:
+    - id (primary key)
+    - note_title
+    - note_content
+    - note_date
+    - user_id (foreign key)
 
 ## Deployment & Local Development
 
 ### Deployment
 
-This project was deployed to GitHub Pages using the following steps:
+This project was deployed to Heroku via Elephant SQL using the following steps:
 
-1. Log into GitHub and locate the [GitHub Repository](https://github.com/ThomasBallardCI/M2-Skate-Selection-Quiz).
-2. Click the settings button (above the "add file" button).
-3. Click on "Pages" on the left-hand-side column.
-4. Under "Source", click the dropdown called "Main", select folder ""/root" and click "save".
-5. Refresh the page.
-6. Click on the "Visit site" button at the top of the page.
+#### ElephantSQL
+
+1. Navigate to ElephantSQL.com and create a user account, using log in with GitHub.
+2. Click “Create New Instance”.
+3. Set up your plan. (You can leave the 'tags' field blank.)
+4. Select region.
+5. Select a data centre near you
+6. Then click “Review”.
+7. Check your details are correct and then click “Create instance”.
+8. Return to the ElephantSQL dashboard and click on the database instance name for this project
+9. In the URL section, clicking the copy icon will copy the database URL to your clipboard
+10. Leave this tab open, we will come back here later
+
+#### Heroku
+
+1. Log into Heroku.com and click “New” and then “Create a new app”.
+2. Choose a unique name for your app, select the region closest to you and click “Create app”.
+3. Go to the Settings tab of your new app
+4. Click Reveal Config Vars
+5. Return to your ElephantSQL tab and copy your database URL
+6. Back on Heroku, add a Config Var called DATABASE_URL and paste your ElephantSQL database URL in as the value. Make sure you click “Add.”
+7. Add each of your other environment variables except DEVELOPMENT and DB_URL from the env.py file as a Config Var.
+8. Navigate to the “Deploy” tab of your app.
+9. In the Deployment method section, select “Connect to GitHub”.
+10. Search for your repo and click Connect
+11. Optional: You can click Enable Automatic Deploys in case you make any further changes to the project. This will trigger any time code is pushed to your GitHub repository.
+12. As we already have all our changes pushed to GitHub, we will use the Manual deploy section and click Deploy Branch. This will start the build process.
+13. Now, we have our project in place, and we have an empty database ready for use. As you may remember from our local development, we still need to add our tables to our database. To do this, we can click the “More” button and select “Run console.”
+14. Type python3 into the console and click Run
+15. In the terminal that opens, write "from quicknote import db" and then press enter.
+16. In the terminal, write "db.create_all()" and then press enter.
+17. Exit the Python terminal, by typing exit() and hitting enter, and close the console. Our Heroku database should now have the tables and columns created from our models.py file.
+18. The app should be up and running now, so click the “Open app” button
 
 ### Local Deployment
 
 #### How to Fork
 
-To fork the Brain Worms repository:
+To fork the Quick Notes repository:
 
 1. Log in (or sign up) to GitHub.
-2. Go to the repository for this project, at [GitHub Repository](https://github.com/ThomasBallardCI/M2-Skate-Selection-Quiz).
+2. Go to the repository for this project, at [GitHub Repository](https://github.com/ThomasBallardCI/m3-notes-app).
 3. Click the Fork button in the top right corner.
 
 #### How to Clone
 
-To clone the Brain Worms repository:
+To clone the Quick Notes repository:
 
 1. Log in (or sign up) to GitHub.
-2. Go to the repository for this project, at [GitHub Repository](https://github.com/ThomasBallardCI/M2-Skate-Selection-Quiz).
+2. Go to the repository for this project, at [GitHub Repository](https://github.com/ThomasBallardCI/m3-notes-app).
 3. Above the list of files, click "Code".
 4. Click "Open with GitHub Desktop" to clone and open the repository with GitHub Desktop.
 5. Click "Choose..." and, using Windows Explorer, navigate to a local path where you want to clone the repository.
 6. Click "Clone".
 
+### Installations and commands in the terminal that are necessary when forking or using a different workspace
+
+- pip3 install Flask==2.0.1
+- pip3 install Flask-SQLAlchemy==2.5.1
+- pip3 install Werkzeug==2.0.1
+- pip3 install psycopg2==2.9.1
+- pip3 install flask_login
+- To create a working database in the workspace:
+  - set_pg
+  - psql
+  - CREATE DATABASE quicknote;
+  - \q
+  - python3
+  - from quicknote import db
+  - db.create_all()
+  - exit()
+
+- To delete the database (you must delete and recreate the database if the models are changed)
+  - set_pg
+  - psql
+  - DROP DATABASE quicknote;
+  - \q
+
+    Repeat the steps above to create a new working database
+
+
 ## Testing
 
-Testing was an ongoing process as I built out the questionnaire, utilizing Chrome Developer Tools with console logging to ensure I was getting the required responses from the code as it was written.
+Testing was an ongoing process as I built out the Quick Notes application, utilizing Chrome Developer Tools with console logging to ensure I was getting the required responses from the code as it was written.
 There are two types of testing methods available: 'Manual' and 'Automated.' Both have been used in some form throughout the creation of the website questionnaire.
 
 - __Manual Testing__ Is done by an individual to see if they can use the product in a way that creates, finds, and results in bugs, or not, to ensure it behaves correctly for the user when pushed live.
 
 - __Automated Testing__ Is done by means of an automation framework or another tool or software suite to check for errors and bugs in code.
 
-### Solved Bugs
-
-- The hover effect was persistent across mobile and tablet devices and remained on the previously selected option during the questionnaire.
-
-  - Fix: Used a media query (Pointer: fine) with the hover styling placed in to only target devices with an accurate pointer (like a mouse or stylus).
-
-- The Name Input field allowed non-alphanumeric values.
-
-  - Fix: Added code to JS to check that the user inputs only alphanumeric characters into the name field and, if not, alerts the user to provide a name containing them.
-
-- The background blur was not applying on iPad OS/Safari browser.
-
-  - Fix: Added a -webkit- CSS line to specifically target Safari and apply the blur.
-
 ### Known Bugs
 
-- Firefox is not displaying the 'Manrope' font correctly and defaulting to sans-serif. Unsure of the reasoning and due to time constraints, could not find and implement a fix in time for submission.
+- No Known Bugs
 
 ### Validator Testing
 
 #### [HTML Validator](https://validator.w3.org/)
 
-  - __Result for Index.html (Whole site HTML)__
+  - __Result for base.html__
 
-    Two warnings appear for the H1 and H2 headings. This is the result of those headings being populated by JS rather than HTML directly.
-    ![HTML Results index.html](documentation/validation-results/htmlvalidation.jpg)
+    19 Errors appear due to jinja template syntax
+    ![HTML Results base.html](docs/validation-results/html_valid_base.jpg)
+
+  - __Results for home.html__
+
+    4 Errors appear due to jinja template syntax
+    ![HTML Results home.html](docs/validation-results/html_valid_home.jpg)
+
+  - __Results for login.html__
+
+    4 Errors appear due to jinja template syntax
+    ![HTML Results login.html](docs/validation-results/html_valid_login.jpg)
+
+  - __Results for notes.html__
+
+    10 Errors appear due to jinja template syntax
+    ![HTML Results notes.html](docs/validation-results/html_valid_notes.jpg)
+
+  - __Results for add_note.html__
+
+    5 Errors appear due to jinja template syntax
+    ![HTML Results add_note.html](docs/validation-results/html_valid_add_note.jpg)
+
+  - __Results for edit_note.html__
+
+    5 Errors appear due to jinja template syntax
+    ![HTML Results edit_note.html](docs/validation-results/html_valid_edit_note.jpg)
+
+  - __Results for user_management.html__
+
+    6 Errors appear due to jinja template syntax
+    ![HTML Results user_management.html](docs/validation-results/html_valid_account.jpg)
 
 #### [CSS Validator](https://jigsaw.w3.org/css-validator/)
 
   - __Results for Style.css__
 
-    ![CSS Results style.css](documentation/validation-results/cssvalidation.jpg)
-
-#### [Lighthouse Validaton](https://developer.chrome.com/docs/lighthouse/overview/)
-  
-  - __Desktop__
-
-    ![Desktop Lighthouse](documentation/validation-results/desktoplighthouse.jpg)
-
-  - __Mobile__
-
-    ![Mobile Lighthouse](documentation/validation-results/mobilelighthouse.jpg)
+    ![CSS Results style.css](docs/validation-results/css_valid.jpg)
 
 #### [JSLint](https://jslint.com)
 
-  - __Data.js__
+  - __Script.js__
     
-    ![JSLint data.js](documentation/validation-results/jslintdata.jpg)
+    ![JSLint script.js](docs/validation-results/js_valid.jpg)
 
+#### [Python Validator](https://pep8ci.herokuapp.com/)
 
-  - __Sctipt.js__
-    I added "document, alert, location" to the imported globals field due to them being provided by the browser environment. I also added "question and skateSuggest" as they are in the data.js file. I instructed it to allow whitespace for preference on how the code looks for readability, as well as length due to comments being longer than 80 characters.
-    ![JSLint script.js](documentation/validation-results/jslintscript.jpg)
+  - __Results for Init.py__
+
+    Shows "E501 line too long" due to Docstrings
+    ![Python Results init.py](docs/validation-results/python_valid_init.jpg)
+
+  - __Results for Models.py__
+
+    Shows "E501 line too long" due to Docstrings
+    ![Python Results models.py](docs/validation-results/python_valid_models.jpg)
+
+  - __Results for Routes.py__
+
+    Shows "E501 line too long" due to Docstrings
+    ![Python Results routes.py](docs/validation-results/python_valid_routes.jpg)
+
+  - __Results for Env.py__
+
+    Shows "E501 line too long" due to Docstrings
+    ![Python Results env.py](docs/validation-results/python_valid_env.jpg)
+
+  - __Results for Run.py__
+
+    Shows "E501 line too long" due to Docstrings
+    ![Python Results run.py](docs/validation-results/python_valid_run.jpg)
+
 
 ### Manual Testing
 
@@ -303,40 +402,39 @@ __Tablet__
   - Chrome Developer tools were used to fully test the site and its functionality throughout the development process, in combination with console logs as code was written, to ensure it was functioning correctly. The Chrome Developer tools were also used to test responsiveness for mobile and tablet device-specific styling before moving on to functionality testing on those devices physically.
 
 #### Button
-  - Testing of all buttons was carried out on all platforms to ensure they took you to the relevant next section, checked and logged the information required correctly or restarted the quiz entirely, with the questionnaire buttons being checked in all 27 possible combinations.
+  - Testing of all buttons was carried out on all platforms to ensure they took you to the relevant section, opened or closed the correct modals and submitted the information correctly (user registration and note create/edit).
 
 #### Input Field
-  - Testing of the input field was done by passing it non-alphanumeric values at various stages of the 'Names' characters during input to ensure the code would trigger and send an alert to the user, notifying them that only alphanumeric characters are permitted.
-  - Testing of the name being logged for use when the begin quiz button was pressed and the user had used only alphanumerical characters between 2 and 30 characters long was done via the Chrome DevTools and console logging the value pushed to the username variable.
+  - Testing of the input fields was done by passing them characters below and above the limits set for each input field.
+
+#### Authenticaton
+  - Authentication was tested by creating a user account and ensuring when logged in the user can only see the relevent sections of the app.
+    - Nav bar elements "Notes" "Account" "Logout"
+    - Pages "Notes" "Account"
+    - Actions "creating notes" "editing notes" "deleting notes" "deleting account"
+    - Views Users can only view, edit and delete the notes they have created as well as only being able to delete the account they have created whilst logged in
+    - Returning user if logged in will be directed to their notes page
+
+#### Database
+- User Account data is added and persists over time
+- User Note data is added and persists over time
+- User Notes are edited correctly
+- User Notes are deleted correctly
+- User Account is deleted correctly
+
 
 ## Credits
 
-- [Locoskates.co.uk](https://Locoskates.co.uk) For the resized marketing images of the inline skates used.
+- [Tech With Tim](https://www.youtube.com/watch?v=dam0GPOAvVI&list=WL&index=4) For the User Authentication and login.
 
-- [Caniuse.com](https://caniuse.com/css-backdrop-filter) For CSS Backdrop filter compatibility with Safari.
+- [Code Institute](https://codeinstitute.net/) Relational Database "Task Manager" walkthrough
 
-- [StackOverFlow](https://stackoverflow.com/questions/73967974/disable-css-hover-when-touch-end-in-touch-device) To block the hover effects on mobile and tablet devices.
+- [StackOverFlow](https://stackoverflow.com/questions/4830535/how-do-i-format-a-date-in-jinja2) Formatting Date with Jinja
 
-- [StackOverFlow](https://stackoverflow.com/questions/13183421/how-to-change-placeholder-color-on-focus) Changing placeholder font colour for input field.
+- [StackOverFlow](https://stackoverflow.com/questions/64158349/materialize-css-getting-a-badge-to-left-align) Help with aligning date on the notes via materialize
 
-- [Geeksforgeeks](https://www.geeksforgeeks.org/what-is-mouse-down-selector-in-css/) Creating a 'pressed in' effect on button press for desktop.
+- [Materialize CSS](https://materializecss.com/) For layout and styling
 
-- [Plainenglish.io](https://javascript.plainenglish.io/how-to-get-the-id-of-the-clicked-element-in-the-javascript-click-handler-8ca398d848d6) For help with initially getting the ID of the question button selected by the logged-in user.
-
-- [W3Schools]( https://www.w3schools.com/css/css3_flexbox.asp) For help with Flexbox. 
-
-- [W3Schools](https://www.w3schools.com/tags/att_input_type_submit.asp) Help with submit button.
-
-- [W3Schools](https://www.w3schools.com/css/css_form.asp) Text area styling for user name input field 
-
-- [W3Schools](https://www.w3schools.com/jsref/met_win_alert.asp) Alerting user to incorrect name input.
-
-- [Flexiple.com](https://flexiple.com/javascript/javascript-capitalize-first-letter/) Forcing user input to be uppercase on the first letter, regardless of the user's input when called on the results page.
-
-- [Shecodes.io](https://www.shecodes.io/athena/8931-creating-a-string-with-variables-in-javascript) Help with stringing together username and results information on the results page.
-
-- [educba](https://www.educba.com/clear-cache-javascript/) Help with clearing the username and stored results upon restart after clearing the cache.
-
-Massive thanks to my tutor, Elaine Roche, for helping with suggestions for the code for the next question function to work correctly and checking user input is alphanumeric, as well as all the other support and brainstorming on ideas.
+Massive thanks to my tutor, Julia, for helping with suggestions for the code for note deletion to correctly delete the selected note as well as all the other support and brainstorming on ideas.
 
 Massive thanks to my September 2022 Cohort group for helping with testing and peer reviewing my code.
