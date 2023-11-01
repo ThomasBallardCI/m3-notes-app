@@ -168,11 +168,11 @@ The chosen neutral colour scheme of whites and blacks, along with drop shadows, 
 
 - [Adobe XD](https://www.adobe.com/creativecloud.html) Used to create the wireframes during the design process.
 
-- [Flask](https://flask.palletsprojects.com/en/3.0.x/) Flask is a lightweight and flexible web framework written in Python. It is designed to make building web applications and APIs straightforward and easy. Flask provides the tools and libraries that allow developers to create web applications without the need for complex setups. It is known for its simplicity, extensibility, and ease of use, making it a popular choice for developing web applications in Python.
+- [Flask](https://flask.palletsprojects.com/en/3.0.x/) A lightweight and flexible web framework written in Python. It is designed to make building web applications and APIs straightforward and easy. Flask provides the tools and libraries that allow developers to create web applications without the need for complex setups. It is known for its simplicity, extensibility, and ease of use, making it a popular choice for developing web applications in Python.
 
 - [Jinja](https://jinja.palletsprojects.com/en/3.1.x/) As template engine.
 
-- [SQLAlchemy](https://www.sqlalchemy.org/) SQLAlchemy is the Python SQL toolkit and Object Relational Mapper that gives application developers the full power and flexibility of SQL. It provides a full suite of well known enterprise-level persistence patterns, designed for efficient and high-performing database access, adapted into a simple and Pythonic domain language.
+- [SQLAlchemy](https://www.sqlalchemy.org/) A Python SQL toolkit and Object Relational Mapper that gives application developers the full power and flexibility of SQL. It provides a full suite of well known enterprise-level persistence patterns, designed for efficient and high-performing database access, adapted into a simple and Pythonic domain language.
 
 - [Heroku](https://www.heroku.com) For deployment.
 
