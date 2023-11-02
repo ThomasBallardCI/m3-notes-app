@@ -6,48 +6,44 @@
 <!-- This block contains the main content of the page -->
 {% block content %}
 
-<div class="container center-align">
-    <!-- Page Header -->
-    <h1 class="section center-align" aria-label="Account Management">Account Management</h1>
-    <div class="row">
-        <div class="col s12 center-align">
-            <div class="card">
-                <div class="card-content black-text">
-                    <span class="card-title">
-                        <!-- Greeting message -->
-                        <h2>Welcome {{ user.first_name }}</h2>
-                    </span>
-                    <!-- Delete account message -->
-                    <h4>Click below to delete your Quick Notes account</h4>
-                    <p class="red-text">*Deleting your account will delete and remove all saved notes*</p>
-                </div>
+<!-- Page Header -->
+<h1 class="center-align" aria-label="Account Management">Account Management</h1>
+<div class="row center-align">
+    <div class="card">
+        <div class="card-content black-text">
+            <span class="card-title">
+                <!-- Greeting message -->
+                <h2>Welcome {{ user.first_name }}</h2>
+            </span>
+            <!-- Delete account message -->
+            <h4>Click below to delete your Quick Notes account</h4>
+            <p class="red-text">*Deleting your account will delete and remove all saved notes*</p>
+        </div>
 
-                <div class="card-action">
-                    <!-- Button to go back to Notes page -->
-                    <a class="waves-effect waves-light btn purple darken-4 hoverable" href="{{ url_for('notes') }}" aria-label="Back to Notes">Back to Notes</a>
-                    <!-- Button to open the Delete Account modal -->
-                    <a class="waves-effect waves-light btn red user-delete-button hoverable modal-trigger right-align" href="#delete-account-modal" aria-label="Delete Account">Delete Account</a>
-                </div>
-            </div>
+        <div class="card-action">
+            <!-- Button to go back to Notes page -->
+            <a class="waves-effect waves-light btn purple darken-4 hoverable" href="{{ url_for('notes') }}" aria-label="Back to Notes">Back to Notes</a>
+            <!-- Button to open the Delete Account modal -->
+            <a class="waves-effect waves-light btn red user-delete-button hoverable modal-trigger right-align" href="#delete-account-modal" aria-label="Delete Account">Delete Account</a>
         </div>
     </div>
+</div>
 
-    <!-- Modal Structure for deleting the account -->
-    <div id="delete-account-modal" class="modal">
-        <div class="modal-content left-align">
-            <h4>Confirmation Required!</h4>
-            <!-- Confirmation message -->
-            <p>Are you sure you want to proceed? This action is irreversible and will delete your account and all
-                associated notes.</p>
-        </div>
+<!-- Modal Structure for deleting the account -->
+<div id="delete-account-modal" class="modal">
+    <div class="modal-content left-align">
+        <h4>Confirmation Required!</h4>
+        <!-- Confirmation message -->
+        <p>Are you sure you want to proceed? This action is irreversible and will delete your account and all
+            associated notes.</p>
+    </div>
 
-        <!-- Modal footer -->
-        <div class="modal-footer">
-            <!-- Cancel button within the modal -->
-            <a href="#!" class="modal-close waves-effect waves-light btn-small white purple-text text-darken-4 hoverable" aria-label="Cancel Delete">Cancel</a>
-            <!-- Agree button to delete the account -->
-            <a href="{{ url_for('delete_user', user_id=user.id) }}" class="waves-effect waves-light btn-small red hoverable" aria-label="Confirm Delete">Agree</a>
-        </div>
+    <!-- Modal footer -->
+    <div class="modal-footer">
+        <!-- Cancel button within the modal -->
+        <a href="#!" class="modal-close waves-effect waves-light btn-small white purple-text text-darken-4 hoverable" aria-label="Cancel Delete">Cancel</a>
+        <!-- Agree button to delete the account -->
+        <a href="{{ url_for('delete_user', user_id=user.id) }}" class="waves-effect waves-light btn-small red hoverable" aria-label="Confirm Delete">Agree</a>
     </div>
 </div>
 
