@@ -2,22 +2,26 @@
 QuickNote Application Module
 
 Description:
-    This module serves as a central component of the QuickNote application, containing
-    the main routes and functionality for user registration, login, note management,
-    and user authentication. It imports necessary modules, such as Flask, SQLAlchemy,
-    and Flask-Login, to implement the application's core features. The module defines
-    routes, views, and database interactions for creating, editing, and viewing notes,
-    as well as user registration and login.
+    This module serves as a central component of the QuickNote application,
+    containing the main routes and functionality for user registration, login,
+    note management, and user authentication.
+    It imports necessary modules, such as Flask, SQLAlchemy, and Flask-Login,
+    to implement the application's core features.
+    The module defines routes, views, and database interactions for creating,
+    editing, and viewing notes, as well as user registration and login.
 
     Dependencies:
     - Flask: A web framework for building the application.
-    - SQLAlchemy: An Object-Relational Mapping (ORM) library for database operations.
-    - Flask-Login: A Flask extension for managing user sessions and authentication.
+    - SQLAlchemy: An Object-Relational Mapping (ORM) library for database
+      operations.
+    - Flask-Login: A Flask extension for managing user sessions and
+      authentication.
     - werkzeug.security: Provides password hashing and verification functions.
     - datetime: Used for date and time operations.
     - quicknote.models: Contains the data models for users and notes.
 
-    Use this module as the main entry point for running the QuickNote application.
+    Use this module as the main entry point for running the QuickNote
+    application.
 """
 from datetime import datetime
 from flask import render_template, request, flash, redirect, url_for
@@ -34,16 +38,20 @@ def home():
     Route function for handling user registration and redirection.
 
     If the current user is authenticated, redirects to the 'notes' page.
-    If the request method is POST, it retrieves user registration data from the form,
-    validates the input, and creates a new user if the data is valid.
-    If the email provided already exists in the database, it flashes an error message.
-    Otherwise, it checks and validates the input data such as email, first name, last name, and passwords.
-    If all validations pass, a new user is created, added to the database, and the user is logged in.
+    If the request method is POST, it retrieves user registration data from the
+    form, validates the input, and creates a new user if the data is valid.
+    If the email provided already exists in the database, it flashes an
+    error message.
+    Otherwise, it checks and validates the input data such as email, first name,
+    last name, and passwords.
+    If all validations pass, a new user is created, added to the database,
+    and the user is logged in.
     It then redirects to the 'notes' page after a successful account creation.
 
     Returns:
         If the user is already authenticated, redirects to 'notes'.
-        If the request method is POST and all input validations pass, redirects to 'notes' after account creation.
+        If the request method is POST and all input validations pass,
+        redirects to 'notes' after account creation.
         Otherwise, renders the 'home.html' template for user registration.
 
     Dependencies:
@@ -51,7 +59,8 @@ def home():
         - request: Retrieves form data and method type (POST).
         - redirect: Redirects to a specified route.
         - url_for: Generates URLs for a specific function.
-        - flash: Displays flashed messages for different categories (success or error).
+        - flash: Displays flashed messages for different categories
+          (success or error).
         - User: Represents the User model for interaction with the database.
         - generate_password_hash: Hashes the user's password for security.
         - login_user: Logs in the user.
@@ -62,7 +71,8 @@ def home():
         - 'home.html': Contains the user registration form.
 
     Note:
-        - This function assumes the existence of a User model and an 'home.html' template.
+        - This function assumes the existence of a User model and an
+          'home.html' template.
         - It employs Flask and its extensions for web functionalities.
     """
     if current_user.is_authenticated:
@@ -123,11 +133,14 @@ def user_management():
     User Management View
 
     Description:
-        This view function displays the user management page, ensuring that the user is logged in.
-        It renders the 'user_management.html' template, providing options for user-related management.
+        This view function displays the user management page, ensuring that the
+        user is logged in.
+        It renders the 'user_management.html' template,
+        providing options for user-related management.
 
     Returns:
-        The 'user_management.html' template with the 'current_user' context for user-specific actions.
+        The 'user_management.html' template with the 'current_user'
+        context for user-specific actions.
     """
     # Render the user management page template with the current user's context
     return render_template("user_management.html", user=current_user)
@@ -143,14 +156,19 @@ def delete_user(user_id):
         user_id (int): The unique identifier of the user account to be deleted.
 
     Description:
-        This view function allows the deletion of a user account and associated notes. It first confirms if the user
-        attempting the deletion is the currently logged-in user. If the condition is met, it proceeds to delete the
-        specified user account and associated notes. If not authorized, it displays an error message and redirects to
-        the home page.
+        This view function allows the deletion of a user account and associated
+        notes.
+        It first confirms if the uservattempting the deletion is the currently
+        logged-in user.
+        If the condition is met, it proceeds to delete thevspecified user
+        account and associated notes.
+        If not authorized, it displays an error message and redirects to the
+        home page.
 
     Returns:
         - A redirection to the 'home' view after successful deletion.
-        - An error message and redirection to the 'home' view in case of unauthorized deletion attempts.
+        - An error message and redirection to the 'home' view in case of
+        unauthorized deletion attempts.
     """
     # Check if the user attempting deletion is the currently logged-in user
     if current_user.id == user_id:
@@ -186,16 +204,20 @@ def login():
     Log in a user or display the login page.
 
     Description:
-        This view function handles the login process for users. If the HTTP request
-        method is POST, it attempts to authenticate the user using the provided email
-        and password. If the authentication is successful, the user is logged in and
-        redirected to the 'notes' view. If the email or password is incorrect, appropriate
-        flash messages are shown. If the request method is GET, it displays the login
-        page, allowing users to enter their credentials.
+        This view function handles the login process for users.
+        If the HTTP request method is POST, it attempts to authenticate the user
+        using the provided email and password.
+        If the authentication is successful, the user is logged in and 
+        redirected to the 'notes' view. 
+        If the email or password is incorrect, appropriate flash messages
+        are shown.
+        If the request method is GET, it displays the login page, allowing users
+        to enter their credentials.
 
     Returns:
-        A redirection to the 'notes' view after successful login or the 'login.html'
-        template for entering login credentials in the case of a GET request.
+        A redirection to the 'notes' view after successful login or
+        the 'login.html' template for entering login credentials in the case of
+        a GET request.
 
     """
     if request.method == "POST":
@@ -206,9 +228,11 @@ def login():
         # Retrieving the user with the provided email from the database
         user = User.query.filter_by(email=email).first()
         if user:
-            # Check if the provided password matches the stored password hash for the user
+            # Check if the provided password matches the stored password hash
+            # for the user
             if check_password_hash(user.password, password):
-                # Flash a success message and log in the user if authentication is successful
+                # Flash a success message and log in the user if authentication
+                # is successful
                 flash("Logged in Successfully!", category="success")
                 login_user(user, remember=True)
                 # Redirect to the notes page after successful login
@@ -217,7 +241,8 @@ def login():
                 # Flash an error message if the provided password is incorrect
                 flash("Incorrect Password, Try again.", category="error")
         else:
-            # Flash an error message if the email provided does not exist in the database
+            # Flash an error message if the email provided does not exist in
+            # the database
             flash("Email does not exist", category="error")
 
     # Render the login template if the request method is not POST
@@ -231,13 +256,16 @@ def logout():
     Log out the current user and redirect to the home page.
 
     Description:
-        This view function logs out the currently authenticated user, effectively
-        ending their session. After logging out, the user is redirected to the
-        application's home page. Users typically use this endpoint to securely
-        end their session when they are done with their tasks.
+        This view function logs out the currently authenticated user,
+        effectively ending their session.
+        After logging out, the user is redirected to the application's
+        home page.
+        Users typically use this endpoint to securely end their session when
+        they are done with their tasks.
 
     Returns:
-        A redirection to the 'home' view after successfully logging out the user.
+        A redirection to the 'home' view after successfully logging out
+        the user.
     """
     # Logs out the currently authenticated user
     logout_user()
@@ -254,20 +282,24 @@ def notes():
     Display a list of notes for the authenticated user.
 
     Description:
-        This view function retrieves and displays a list of notes belonging to the
-        authenticated user. It queries the database to retrieve the user's notes,
-        orders them in descending order of the note's date, and passes the list of
-        notes to the 'notes.html' template for rendering. Users can view and manage
-        their notes through this page.
+        This view function retrieves and displays a list of notes belonging
+        to the authenticated user.
+        It queries the database to retrieve the user's notes, orders them in
+        descending order of the note's date, and passes the list of notes to the
+        'notes.html' template for rendering.
+        Users can view and manage their notes through this page.
 
     Returns:
-        A rendered 'notes.html' template displaying the list of notes for the user.
+        A rendered 'notes.html' template displaying the list of notes for
+        the user.
     """
-    # Fetches the notes associated with the authenticated user and arranges them by date in descending order
+    # Fetches the notes associated with the authenticated user and
+    # arranges them by date in descending order
     notes = list(Note.query.filter_by(
         user_id=current_user.id).order_by(desc(Note.note_date)).all())
 
-    # Renders the 'notes.html' template and passes the list of notes and the current user's context for rendering
+    # Renders the 'notes.html' template and passes the list of notes and
+    # the current user's context for rendering
     return render_template("notes.html", notes=notes, user=current_user)
 
 
@@ -278,12 +310,14 @@ def add_note():
     Add a new note.
 
     Description:
-        This view function allows authenticated users to add a new note. If the HTTP
-        request method is POST, it retrieves the note title, content, and an optional
-        date from the submitted form. It validates that the title and content meet
-        minimum length requirements. If both conditions are met, a new note is created
-        and added to the database. Users are then redirected to the 'notes' view to
-        see their updated list of notes.
+        This view function allows authenticated users to add a new note.
+        If the HTTP request method is POST, it retrieves the note title,
+        content, and an optional date from the submitted form.
+        It validates that the title and content meet minimum length
+        requirements.
+        If both conditions are met, a new note is created and added to
+        the database. Users are then redirected to the 'notes' view to see their
+        updated list of notes.
 
     Returns:
         A redirection to the 'notes' view after adding the new note.
@@ -339,17 +373,20 @@ def edit_note(note_id):
         note_id (int): The unique identifier of the note to be edited.
 
     Description:
-        This view function allows authenticated users to edit the title and content
-        of an existing note. It retrieves the note with the given 'note_id' from the
-        database. If the HTTP request method is POST, it checks if the provided title
-        and content meet the minimum length requirements. If both conditions are met,
-        the note's date is updated to the current date and the changes are saved to
-        the database.
+        This view function allows authenticated users to edit the title and
+        content of an existing note.
+        It retrieves the note with the given 'note_id' from the database.
+        If the HTTP request method is POST, it checks if the provided title
+        and content meet the minimum length requirements.
+        If both conditions are met, the note's date is updated to the current
+        date and the changes are saved to the database.
 
     Returns:
-        A redirection to the 'notes' view, displaying the updated or unchanged note.
+        A redirection to the 'notes' view, displaying the updated or
+        unchanged note.
     """
-    # Retrieve the note with the given 'note_id' or return a 404 error if not found
+    # Retrieve the note with the given 'note_id' or
+    # return a 404 error if not found
     note = Note.query.get_or_404(note_id)
 
     if request.method == "POST":
@@ -363,12 +400,15 @@ def edit_note(note_id):
         elif len(note.note_content) < 1:
             flash("Note is too short!", category="error")
         else:
-            # Set the note's date to the current time and commit changes to the database
+            # Set the note's date to the current time and
+            # commit changes to the database
             note.note_date = datetime.now()
             db.session.commit()
-            return redirect(url_for("notes"))  # Redirect to the 'notes' view after editing
+            # Redirect to the 'notes' view after editing
+            return redirect(url_for("notes"))
 
-    # Render the 'edit_note.html' template to allow users to edit the selected note
+    # Render the 'edit_note.html' template to allow users to
+    # edit the selected note
     return render_template("edit_note.html", note=note, user=current_user)
 
 
@@ -383,10 +423,12 @@ def delete_note(note_id):
 
     Returns:
     A redirection to the 'notes' route upon successful deletion.
-    If the note does not belong to the logged-in user, it flashes a message indicating lack of authorization and redirects to the 'notes' route.
+    If the note does not belong to the logged-in user, it flashes a message
+    indicating lack of authorization and redirects to the 'notes' route.
 
     Note:
-    This function requires the user to be logged in ('@login_required') to delete a note.
+    This function requires the user to be logged in ('@login_required')
+    to delete a note.
     """
     note = Note.query.get_or_404(note_id)
 
@@ -396,6 +438,7 @@ def delete_note(note_id):
         db.session.commit()
         return redirect(url_for("notes"))
     else:
-        # If the note does not belong to the logged-in user, handle unauthorized deletion
+        # If the note does not belong to the logged-in user,
+        # handle unauthorized deletion
         flash("You are not authorized to delete this note.", category="error")
         return redirect(url_for("notes"))

@@ -2,17 +2,20 @@
 QuickNote Data Models Module
 
 Description:
-    This module defines the data models used in the QuickNote application. It includes
-    the UserMixin class, which provides user management functionality and interfaces
-    required for user sessions and authentication. The module also defines a set of
-    data models for the application, such as the 'User' and 'Note' models.
+    This module defines the data models used in the QuickNote application.
+    It includes the UserMixin class, which provides user management
+    functionality and interfaces required for user sessions and authentication.
+    The module also defines a set of data models for the application,
+    such as the 'User' and 'Note' models.
 
     Dependencies:
-    - flask_login.UserMixin: Provides user management functionality for the application.
+    - flask_login.UserMixin: Provides user management functionality for the
+      application.
     - sqlalchemy.sql.func: Provides SQL functions for database operations.
     - quicknote.db: The database instance used to interact with the database.
 
-    Use this module to define and manage the data models used by the QuickNote application.
+    Use this module to define and manage the data models used by the QuickNote
+    application.
 """
 from flask_login import UserMixin
 from sqlalchemy.sql import func
@@ -33,10 +36,11 @@ class User(db.Model, UserMixin):
         notes (relationship): A relationship to the user's notes.
 
     Description:
-        This class represents the User model for the QuickNote application. It defines
-        the schema and attributes for user data, including the user's name, email,
-        password, and related notes. The 'id' attribute serves as the primary key
-        for identifying individual users.
+        This class represents the User model for the QuickNote application.
+        It defines the schema and attributes for user data, including the user's
+        name, email, password, and related notes.
+        The 'id' attribute serves as the primary key for identifying individual
+        users.
     """
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(150))
@@ -66,11 +70,12 @@ class Note(db.Model):
         user_id (int): The foreign key linking the note to a user.
 
     Description:
-        This class represents the Note model for the QuickNote application. It defines
-        the schema and attributes for notes, including their title, content, creation
-        date, and the user to whom the note belongs. The 'id' attribute serves as the
-        primary key for identifying individual notes, and 'user_id' establishes a
-        relationship to the user who created the note.
+        This class represents the Note model for the QuickNote application.
+        It defines the schema and attributes for notes, including their title,
+        content, creation date, and the user to whom the note belongs.
+        The 'id' attribute serves as the primary key for identifying individual
+        notes, and 'user_id' establishes a relationship to the user who created
+        the note.
     """
     id = db.Column(db.Integer, primary_key=True)
     note_title = db.Column(db.String(30))

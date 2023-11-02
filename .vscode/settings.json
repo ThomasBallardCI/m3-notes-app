@@ -25,6 +25,9 @@
    "terminal.integrated.gpuAcceleration": "canvas",
    "editor.defaultFormatter": "HookyQR.beautify",
    "[python]": {
-      "editor.defaultFormatter": "ms-python.python"
-   }
+      "editor.defaultFormatter": "ms-python.black-formatter"
+   },
+   "editor.indentSize": "tabSize",
+   "editor.rulers": [
+      80,120]
 }
