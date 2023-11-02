@@ -36,35 +36,35 @@
             <div class="row">
                 <div class="input-field col s12">
                     <!-- Email Input Field -->
-                    <input id="email" name="email" type="email" class="validate" minlength="4" required aria-label="Email Input">
+                    <input id="email" name="email" type="email" class="validate" minlength="4" maxlength="150" required aria-label="Email Input">
                     <label for="email">Email</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
                     <!-- First Name Input Field -->
-                    <input id="first_name" name="first_name" type="text" class="validate" minlength="2" required aria-label="First Name Input">
+                    <input id="first_name" name="first_name" type="text" class="validate" minlength="2" maxlength="50" required aria-label="First Name Input">
                     <label for="first_name">First Name</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
                     <!-- Last Name Input Field -->
-                    <input id="last_name" name="last_name" type="text" class="validate" minlength="2" required aria-label="Last Name Input">
+                    <input id="last_name" name="last_name" type="text" class="validate" minlength="2" maxlength="50" required aria-label="Last Name Input">
                     <label for="last_name">Last Name</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
                     <!-- Password Input Field -->
-                    <input id="password1" name="password1" type="password" class="validate" minlength="7" required aria-label="Password Input">
+                    <input id="password1" name="password1" type="password" class="validate" minlength="7" maxlength="50" required aria-label="Password Input">
                     <label for="password1">Password</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
                     <!-- Confirm Password Input Field -->
-                    <input id="password2" name="password2" type="password" class="validate" minlength="7" required aria-label="Confirm Password Input">
+                    <input id="password2" name="password2" type="password" class="validate" minlength="7" maxlength="50" required aria-label="Confirm Password Input">
                     <label for="password2">Password (Confirm)</label>
                 </div>
             </div>
@@ -77,7 +77,7 @@
         </form>
 
         <!-- Login Link -->
-        <p class="center-align login-here">Already have an account? <a href="{{ url_for('login') }}" aria-label="Login Link">login here!</a></p>
+        <p class="center-align login-here">Already have an account? <a href="{{ url_for('login') }}" aria-label="Login Link" class="login-link">login here!</a></p>
     </div> 
 </div>
 

@@ -328,10 +328,6 @@ def add_note():
         note_content = request.form.get("note_content")
         note_date = request.form.get("note_date")
 
-        print("note_title", note_title)
-        print("note_content", note_content)
-        print("note_date", note_date)
-
         # Validate the length of note title and content
         if not note_title or len(note_title.strip()) < 1:
             flash("Title is too short!", category="error")
@@ -339,13 +335,7 @@ def add_note():
         elif not note_content or len(note_content.strip()) < 1:
             flash("Note is too short!", category="error")
             return redirect(url_for("add_note", user=current_user))
-        elif not note_date:
-            flash("Date failed to update, Please try again!", category="error")
-            return redirect(url_for("add_note", user=current_user))
         else:
-            print("note_title", note_title)
-            print("note_content", note_content)
-            print("note_date", note_date)
             # Create a new note with validated data and the current user's ID
             new_note = Note(
                 note_content=note_content,
@@ -397,8 +387,10 @@ def edit_note(note_id):
         # Validate the length of note title and content
         if len(note.note_title) < 1:
             flash("Title is too short!", category="error")
+            return redirect(url_for("add_note", user=current_user))
         elif len(note.note_content) < 1:
             flash("Note is too short!", category="error")
+            return redirect(url_for("add_note", user=current_user))
         else:
             # Set the note's date to the current time and
             # commit changes to the database

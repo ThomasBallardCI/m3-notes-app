@@ -16,7 +16,7 @@
         <div class="row">
             <div class="input-field">
                 <i class="material-icons prefix purple-text text-darken-4" aria-hidden="true">mode_edit</i>
-                <input id="note_title" name="note_title" minlength="1" type="text" class="validate" required aria-label="Note Title Input">
+                <input id="note_title" name="note_title" minlength="1" maxlength="30" type="text" class="validate" required aria-label="Note Title Input">
                 <label for="note_title" aria-label="Title">Title</label>
             </div>
         </div>
@@ -25,7 +25,7 @@
         <div class="row">
             <div class="input-field">
                 <i class="material-icons prefix purple-text text-darken-4" aria-hidden="true">description</i>
-                <textarea id="note_content" name="note_content" class="materialize-textarea" minlength="1" aria-label="Note Content"></textarea>
+                <textarea id="note_content" name="note_content" class="materialize-textarea" minlength="1" maxlength="10000" required aria-label="Note Content"></textarea>
                 <label for="note_content" aria-label="Content">Content</label>
             </div>
         </div>

@@ -13,22 +13,24 @@
 
     <header>
         <!-- top navbar -->
-        <nav class="white">
-            <div class="nav-wrapper container">
-                <a href="{{ url_for('home') }}" class="brand-logo black-text" aria-label="Go to Home">Quick Notes</a>
-                <a href="#" data-target="mobile-demo" class="sidenav-trigger black-text" aria-label="Open Navigation Menu"><i class="material-icons">menu</i></a>
-                <ul class="right hide-on-med-and-down">
-                    {% if user.is_authenticated %}
-                    <li><a class="black-text" href="{{ url_for('notes') }}" aria-label="View Notes">Notes</a></li>
-                    <li><a class="black-text" href="{{ url_for('user_management') }}" aria-label="Account">Account</a></li>
-                    <li><a class="black-text modal-trigger" href="#modal-logout" aria-label="Logout">Logout</a></li>
-                    {% else %}
-                    <li><a class="black-text" href="{{ url_for('home') }}" aria-label="Go to Home">Home</a></li>
-                    <li><a class="black-text" href="{{ url_for('login') }}" aria-label="Login">Login</a></li>
-                    {% endif %}
-                </ul>
-            </div>
-        </nav>
+        <div class="navbar-fixed">
+            <nav class="white">
+                <div class="nav-wrapper container">
+                    <a href="{{ url_for('home') }}" class="brand-logo black-text" aria-label="Go to Home">Quick Notes</a>
+                    <a href="#" data-target="mobile-demo" class="sidenav-trigger black-text" aria-label="Open Navigation Menu"><i class="material-icons">menu</i></a>
+                    <ul class="right hide-on-med-and-down">
+                        {% if user.is_authenticated %}
+                        <li><a class="black-text" href="{{ url_for('notes') }}" aria-label="View Notes">Notes</a></li>
+                        <li><a class="black-text" href="{{ url_for('user_management') }}" aria-label="Account">Account</a></li>
+                        <li><a class="black-text modal-trigger" href="#modal-logout" aria-label="Logout">Logout</a></li>
+                        {% else %}
+                        <li><a class="black-text" href="{{ url_for('home') }}" aria-label="Go to Home">Home</a></li>
+                        <li><a class="black-text" href="{{ url_for('login') }}" aria-label="Login">Login</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
+        </div>
 
         <!-- mobile sidenav -->
         <ul class="sidenav" id="mobile-demo" role="navigation">
@@ -105,7 +107,7 @@
         <div class="footer-copyright white">
             <div class="container black-text">
                 © 2023 Copyright Thomas Ballard
-                <a class="black-text right" href="https://github.com/ThomasBallardCI/m3-notes-app" target="_blank" aria-label="View on GitHub">GitHub</a>
+                <a class="black-text right github" href="https://github.com/ThomasBallardCI/m3-notes-app" target="_blank" aria-label="View on GitHub">GitHub</a>
             </div>
         </div>
     </footer>
