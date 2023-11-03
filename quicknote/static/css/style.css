@@ -72,7 +72,8 @@ h1 {
 
 /* Styling for register below specific text */
 .register-below {
-    font-weight: 500;
+    font-weight: 700;
+    color: #4a148c;
 }
 
 /* Styling for registration, login, and account creation text */
@@ -108,7 +109,10 @@ h1 {
 .collapsible-body {
     overflow: auto;
     height: auto;
-    word-wrap: break-word;
+}
+
+.acc-del-ins {
+    font-size: 1.75em;
 }
 
 /* media queries for smaller devices */
@@ -123,15 +127,6 @@ h1 {
 
     h3 {
         font-size: 1.5em;
-    }
-    
-}
-
-@media only screen and (max-width: 600px) {
-    .register-below {
-        color: #fff;
-        background-color: #4a148c;
-        border-radius: 2px;
     }
     
 }

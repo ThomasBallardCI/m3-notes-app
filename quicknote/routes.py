@@ -387,10 +387,10 @@ def edit_note(note_id):
         # Validate the length of note title and content
         if not note.note_title or len(note.note_title.strip()) < 1:
             flash("Title is too short!", category="error")
-            return redirect(url_for("add_note", user=current_user))
+            return redirect(url_for("edit_note", user=current_user))
         elif not note.note_content or len(note.note_content.strip()) < 1:
             flash("Note is too short!", category="error")
-            return redirect(url_for("add_note", user=current_user))
+            return redirect(url_for("edit_note", user=current_user))
         else:
             # Set the note's date to the current time and
             # commit changes to the database
@@ -434,3 +434,26 @@ def delete_note(note_id):
         # handle unauthorized deletion
         flash("You are not authorized to delete this note.", category="error")
         return redirect(url_for("notes"))
+
+
+@app.route("/edit_user/<int:user_id>", methods=["GET", "POST"])
+@login_required
+def edit_user(user_id):
+
+    user = User.query.get_or_404(user_id)
+
+    if request.method == "POST":
+        user.first_name = request.form.get("first_name")
+        user.last_name = request.form.get("last_name")
+
+        if not user.first_name or len(user.first_name.strip()) < 2:
+            flash("First name is too short!", category="error")
+            return redirect(url_for("user_management", user=current_user))
+        elif not user.last_name or len(user.last_name.strip()) < 2:
+            flash("Last name is too short!", category="error")
+            return redirect(url_for("user_management", user=current_user))
+        else:
+            db.session.commit()
+            return redirect(url_for("user_management"))
+
+    return render_template("edit_user.html", user=current_user)

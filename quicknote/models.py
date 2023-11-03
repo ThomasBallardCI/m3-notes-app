@@ -43,10 +43,10 @@ class User(db.Model, UserMixin):
         users.
     """
     id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String(50))
-    last_name = db.Column(db.String(50))
+    first_name = db.Column(db.String(30))
+    last_name = db.Column(db.String(30))
     email = db.Column(db.String(150), unique=True, nullable=False)
-    password = db.Column(db.String(50))
+    password = db.Column(db.String(30))
     notes = db.relationship(
         "Note", backref="user", cascade="all, delete", lazy=True)
 
