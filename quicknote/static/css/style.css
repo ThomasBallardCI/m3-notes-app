@@ -103,3 +103,44 @@ h1 {
 .register-link:hover {
     text-decoration: underline 1px #4a148c;
 }
+
+/* keeps note content within the bounds of collapsible body */
+.collapsible-body {
+    overflow: auto;
+    height: auto;
+    word-wrap: break-word;
+}
+
+/* media queries for smaller devices */
+@media only screen and  (max-width: 750px) {
+    h1 {
+        font-size: 3em;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .register-below {
+        color: #fff;
+        background-color: #4a148c;
+        border-radius: 2px;
+    }
+    
+}
+
+@media only screen and (max-width: 400px) {
+    .brand-logo {
+        font-size: 1.5em !important;
+    }
+
+    h1 {
+        font-size: 2.75em;
+    }
+
+    .sub-text {
+        font-size: 1.25em;
+    }
+
+    .card-title {
+        font-size: 1.5em !important;
+    }
+}
