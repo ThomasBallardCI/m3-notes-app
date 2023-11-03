@@ -116,6 +116,15 @@ h1 {
     h1 {
         font-size: 3em;
     }
+
+    h2 {
+        font-size: 2em;
+    }
+
+    h3 {
+        font-size: 1.5em;
+    }
+    
 }
 
 @media only screen and (max-width: 600px) {

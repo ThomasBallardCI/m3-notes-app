@@ -385,10 +385,10 @@ def edit_note(note_id):
         note.note_content = request.form.get("note_content")
 
         # Validate the length of note title and content
-        if len(note.note_title) < 1:
+        if not note.note_title or len(note.note_title.strip()) < 1:
             flash("Title is too short!", category="error")
             return redirect(url_for("add_note", user=current_user))
-        elif len(note.note_content) < 1:
+        elif not note.note_content or len(note.note_content.strip()) < 1:
             flash("Note is too short!", category="error")
             return redirect(url_for("add_note", user=current_user))
         else:
