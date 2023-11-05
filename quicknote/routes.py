@@ -454,6 +454,7 @@ def edit_user(user_id):
             return redirect(url_for("user_management", user=current_user))
         else:
             db.session.commit()
+            flash("User names updated successfully!", category="success")
             return redirect(url_for("user_management"))
 
     return render_template("edit_user.html", user=current_user)
