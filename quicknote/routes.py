@@ -110,18 +110,18 @@ def home():
             category="error")
 
         elif not last_name or len(last_name.strip()) < 2:
-            flash("The Last Name must consist of more than 1 character", 
+            flash("The Last Name must consist of more than 1 character",
             category="error")
 
         elif len(last_name.strip()) > 30:
-            flash("The Last Name must consist of less than 30 characters", 
+            flash("The Last Name must consist of less than 30 characters",
             category="error")
 
         elif password1 != password2:
             flash("The Passwords do not match", category="error")
 
         elif not password1 or len(password1.strip()) < 7:
-            flash("The Password must be at least 7 characters", 
+            flash("The Password must be at least 7 characters",
             category="error")
 
         elif len(password1.strip()) > 150:
