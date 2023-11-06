@@ -93,7 +93,9 @@ h1 {
 }
 
 .login-link:hover {
-    text-decoration: underline 1px #4a148c;
+    /* text-decoration: underline 1px #4a148c; */
+    background-color: #4a148c !important;
+    color: #fff !important;
 }
 
 .github:hover {
@@ -102,7 +104,8 @@ h1 {
 }
 
 .register-link:hover {
-    text-decoration: underline 1px #4a148c;
+    background-color: #4a148c !important;
+    color: #fff !important;
 }
 
 /* keeps note content within the bounds of collapsible body */

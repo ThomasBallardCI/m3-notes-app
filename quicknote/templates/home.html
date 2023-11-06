@@ -28,10 +28,6 @@
     <!-- Right Column -->
     <div class="col s12 m6">
         <div class="section" aria-hidden="true"></div>
-        <div>
-            <!-- Register Prompt -->
-
-        </div>
 
         <!-- Registration Form -->
         <form class="col s12 card-panel center-align" method="POST">
@@ -86,8 +82,12 @@
         </form>
 
         <!-- Login Link -->
-        <p class="center-align login-here">Already have an account? <a href="{{ url_for('login') }}"
-                aria-label="Login Link" class="login-link">login here!</a></p>
+        <p class="center-align login-here">Already have an account?
+            <a href="{{ url_for('login') }}" aria-label="Login Link"
+            class="login-link btn waves-effect waves-light white purple-text text-darken-4 hoverable">
+                login here!
+            </a>
+        </p>
     </div>
 </div>
 
