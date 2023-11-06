@@ -13,9 +13,9 @@ Description:
     Dependencies:
     - Flask: A web framework for building the application.
     - SQLAlchemy: An Object-Relational Mapping (ORM) library for database
-      operations.
+    operations.
     - Flask-Login: A Flask extension for managing user sessions and
-      authentication.
+    authentication.
     - werkzeug.security: Provides password hashing and verification functions.
     - datetime: Used for date and time operations.
     - quicknote.models: Contains the data models for users and notes.
@@ -60,7 +60,7 @@ def home():
         - redirect: Redirects to a specified route.
         - url_for: Generates URLs for a specific function.
         - flash: Displays flashed messages for different categories
-          (success or error).
+        (success or error).
         - User: Represents the User model for interaction with the database.
         - generate_password_hash: Hashes the user's password for security.
         - login_user: Logs in the user.
@@ -72,7 +72,7 @@ def home():
 
     Note:
         - This function assumes the existence of a User model and an
-          'home.html' template.
+        'home.html' template.
         - It employs Flask and its extensions for web functionalities.
     """
     if current_user.is_authenticated:
@@ -93,20 +93,40 @@ def home():
             # Flash an error message if the email is already in use
             flash("Email already exists", category="error")
         # Validating input data
-        elif len(email) < 4:
+        elif not email or len(email.strip()) < 4:
             flash("The Email must consist of more than 3 characters",
-                  category="error")
-        elif len(first_name) < 2:
+                category="error")
+
+        elif len(email.strip()) > 150:
+            flash("The Email must consist of less than 150 characters",
+            category="error")
+
+        elif not first_name or len(first_name.strip()) < 2:
             flash("The First Name must consist of more than 1 character",
-                  category="error")
-        elif len(last_name) < 2:
-            flash("The Last Name must consist of more than 1 character",
-                  category="error")
+                category="error")
+
+        elif len(first_name.strip()) > 30:
+            flash("The First Name must consist of less than 30 characters",
+            category="error")
+
+        elif not last_name or len(last_name.strip()) < 2:
+            flash("The Last Name must consist of more than 1 character", 
+            category="error")
+
+        elif len(last_name.strip()) > 30:
+            flash("The Last Name must consist of less than 30 characters", 
+            category="error")
+
         elif password1 != password2:
             flash("The Passwords do not match", category="error")
-        elif len(password1) < 7:
-            flash("The Password must be at least 7 characters",
-                  category="error")
+
+        elif not password1 or len(password1.strip()) < 7:
+            flash("The Password must be at least 7 characters", 
+            category="error")
+
+        elif len(password1.strip()) > 150:
+            flash("The Password is too Long!", category="error")
+
         else:
             # Creating a new user with validated data
             new_user = User(
@@ -332,9 +352,19 @@ def add_note():
         if not note_title or len(note_title.strip()) < 1:
             flash("Title is too short!", category="error")
             return redirect(url_for("add_note", user=current_user))
+
         elif not note_content or len(note_content.strip()) < 1:
             flash("Note is too short!", category="error")
             return redirect(url_for("add_note", user=current_user))
+
+        elif len(note_title) > 30:
+            flash("Title is too long!", category="error")
+            return redirect(url_for("add_note", user=current_user))
+
+        elif len(note_content) > 5000:
+            flash("Note is too long!", category="error")
+            return redirect(url_for("add_note", user=current_user))
+
         else:
             # Create a new note with validated data and the current user's ID
             new_note = Note(
@@ -388,9 +418,19 @@ def edit_note(note_id):
         if not note.note_title or len(note.note_title.strip()) < 1:
             flash("Title is too short!", category="error")
             return redirect(url_for("edit_note", user=current_user))
+
         elif not note.note_content or len(note.note_content.strip()) < 1:
             flash("Note is too short!", category="error")
             return redirect(url_for("edit_note", user=current_user))
+
+        elif len(note.note_title) > 30:
+            flash("Title is too long!", category="error")
+            return redirect(url_for("add_note", user=current_user))
+
+        elif len(note.note_content) > 5000:
+            flash("Note is too long!", category="error")
+            return redirect(url_for("add_note", user=current_user))
+
         else:
             # Set the note's date to the current time and
             # commit changes to the database
@@ -448,12 +488,12 @@ def edit_user(user_id):
     Returns:
         If the request method is POST:
             - If the user details are successfully updated, redirects to
-              user management page.
+            user management page.
             - If the first name or last name is too short, redirects to the
-              user management page with an error message.
+            user management page with an error message.
         If the request method is GET:
             - Renders the edit_user.html template with the
-              current user's details.
+            current user's details.
 
     """
     # Fetch the user from the database with the given user_id
@@ -468,9 +508,19 @@ def edit_user(user_id):
         if not user.first_name or len(user.first_name.strip()) < 2:
             flash("First name is too short!", category="error")
             return redirect(url_for("user_management", user=current_user))
+
         elif not user.last_name or len(user.last_name.strip()) < 2:
             flash("Last name is too short!", category="error")
             return redirect(url_for("user_management", user=current_user))
+
+        elif len(user.first_name.strip()) > 30:
+            flash("First name is too long!", category="error")
+            return redirect(url_for("user_management", user=current_user))
+
+        elif len(user.last_name.strip()) > 30:
+            flash("Last name is too long!", category="error")
+            return redirect(url_for("user_management", user=current_user))
+
         else:
             # If the details are valid, commit changes to the database
             db.session.commit()

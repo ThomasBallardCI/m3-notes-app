@@ -46,7 +46,7 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(30))
     last_name = db.Column(db.String(30))
     email = db.Column(db.String(150), unique=True, nullable=False)
-    password = db.Column(db.String(30))
+    password = db.Column(db.String(150))
     notes = db.relationship(
         "Note", backref="user", cascade="all, delete", lazy=True)
 
