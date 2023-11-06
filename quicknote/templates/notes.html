@@ -12,7 +12,8 @@
 <div class="row">
     <div class="center-align col s12">
         <!-- Button to add a new note -->
-        <a href="{{ url_for('add_note') }}" class="waves-effect waves-light btn-large purple darken-4 hoverable" aria-label="Create New Note">
+        <a href="{{ url_for('add_note') }}" class="waves-effect waves-light btn-large purple darken-4 hoverable"
+            aria-label="Create New Note">
             <i class="material-icons right">add</i>New Note</a>
     </div>
 </div>
@@ -35,8 +36,10 @@
             <span>
                 <p>{{ note.note_content }}</p>
                 <!-- Edit and Delete buttons for the note -->
-                <a href="{{ url_for('edit_note', note_id=note.id) }}" class="btn-small purple darken-4 hoverable" aria-label="Edit Note">Edit</a>
-                <a class="waves-effect waves-light red btn-small modal-trigger hoverable" href="#modal{{ note.id }}" aria-label="Delete Note">Delete</a>
+                <a href="{{ url_for('edit_note', note_id=note.id) }}" class="btn-small purple darken-4 hoverable"
+                    aria-label="Edit Note">Edit</a>
+                <a class="waves-effect waves-light red btn-small modal-trigger hoverable" href="#modal{{ note.id }}"
+                    aria-label="Delete Note">Delete</a>
             </span>
         </div>
 
@@ -45,16 +48,19 @@
             <div class="modal-content">
                 <!-- Delete confirmation message -->
                 <h4>Confirmation Required!</h4>
-                <p>Are you sure you want to proceed? If you click "Agree," the note you want to delete will be permanently erased,
-                and cannot be recovered.</p>
+                <p>Are you sure you want to proceed? If you click "Agree," the note you want to delete will be
+                    permanently erased, and cannot be recovered.</p>
             </div>
             <!-- Modal Footer -->
             <div class="modal-footer">
                 <!-- Button to cancel delete action -->
-                <a href="#!" class="modal-close waves-effect waves-light btn-small white purple-text text-darken-4 hoverable" aria-label="Cancel Delete">Cancel</a>
+                <a href="#!"
+                    class="modal-close waves-effect waves-light btn-small white purple-text text-darken-4 hoverable"
+                    aria-label="Cancel Delete">Cancel</a>
                 <!-- Button to confirm and delete the note -->
                 <a class="waves-effect waves-light btn-small modal-trigger red delete-button hoverable"
-                    href="{{ url_for('delete_note', note_id=note.id) }}" data-note-id="{{ note.id }}" aria-label="Confirm Delete">Agree</a>
+                    href="{{ url_for('delete_note', note_id=note.id) }}" data-note-id="{{ note.id }}"
+                    aria-label="Confirm Delete">Agree</a>
             </div>
         </div>
     </li>
