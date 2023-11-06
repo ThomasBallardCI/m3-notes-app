@@ -10,12 +10,14 @@ main {
 }
 
 /* Styling for label focus color */
-.input-field input:focus+label, textarea:focus+label {
+.input-field input:focus+label,
+textarea:focus+label {
     color: #4a148c !important;
 }
 
 /* Styling for label underline focus color */
-.row .input-field input:focus, textarea:focus {
+.row .input-field input:focus,
+textarea:focus {
     border-bottom: 1px solid #4a148c !important;
     box-shadow: 0 1px 0 0 #4a148c !important;
 }
@@ -77,7 +79,9 @@ h1 {
 }
 
 /* Styling for registration, login, and account creation text */
-.register-below, .login-here, .register-here{
+.register-below,
+.login-here,
+.register-here {
     font-size: 1.2em;
 }
 
@@ -92,17 +96,19 @@ h1 {
     font-size: 2em;
 }
 
+/* loging here link on register/home page styling */
 .login-link:hover {
-    /* text-decoration: underline 1px #4a148c; */
     background-color: #4a148c !important;
     color: #fff !important;
 }
 
+/* github footer link styling */
 .github:hover {
     text-decoration: underline 1px #4a148c;
     color: #4a148c;
 }
 
+/* register here link on login page hover styling */
 .register-link:hover {
     background-color: #4a148c !important;
     color: #fff !important;
@@ -114,12 +120,13 @@ h1 {
     height: auto;
 }
 
+/* account delete instructions styling */
 .acc-del-ins {
     font-size: 1.75em;
 }
 
 /* media queries for smaller devices */
-@media only screen and  (max-width: 750px) {
+@media only screen and (max-width: 750px) {
     h1 {
         font-size: 3em;
     }
@@ -131,7 +138,7 @@ h1 {
     h3 {
         font-size: 1.5em;
     }
-    
+
 }
 
 @media only screen and (max-width: 400px) {
