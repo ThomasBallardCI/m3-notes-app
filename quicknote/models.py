@@ -79,7 +79,7 @@ class Note(db.Model):
     """
     id = db.Column(db.Integer, primary_key=True)
     note_title = db.Column(db.String(30))
-    note_content = db.Column(db.String(10000))
+    note_content = db.Column(db.String(5000))
     note_date = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey(
         "user.id", ondelete="CASCADE"), nullable=False)

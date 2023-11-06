@@ -439,13 +439,32 @@ def delete_note(note_id):
 @app.route("/edit_user/<int:user_id>", methods=["GET", "POST"])
 @login_required
 def edit_user(user_id):
+    """
+    Edit details of a specific user.
 
+    Args:
+        user_id (int): The ID of the user to be edited.
+
+    Returns:
+        If the request method is POST:
+            - If the user details are successfully updated, redirects to
+              user management page.
+            - If the first name or last name is too short, redirects to the
+              user management page with an error message.
+        If the request method is GET:
+            - Renders the edit_user.html template with the
+              current user's details.
+
+    """
+    # Fetch the user from the database with the given user_id
     user = User.query.get_or_404(user_id)
 
     if request.method == "POST":
+        # Update user details with the form data
         user.first_name = request.form.get("first_name")
         user.last_name = request.form.get("last_name")
 
+        # Validate the length of the first name and last name
         if not user.first_name or len(user.first_name.strip()) < 2:
             flash("First name is too short!", category="error")
             return redirect(url_for("user_management", user=current_user))
@@ -453,8 +472,11 @@ def edit_user(user_id):
             flash("Last name is too short!", category="error")
             return redirect(url_for("user_management", user=current_user))
         else:
+            # If the details are valid, commit changes to the database
             db.session.commit()
             flash("User names updated successfully!", category="success")
             return redirect(url_for("user_management"))
 
+    # Render the edit_user.html template with the current user's details
+    # for a GET request
     return render_template("edit_user.html", user=current_user)
