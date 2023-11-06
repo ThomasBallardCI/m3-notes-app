@@ -4,7 +4,7 @@ This Flask-based web application was developed to offer users a swift, simple, e
 
 !["Am I Responsive" image](docs/supp-images/amiresponsive.jpg)
 
-[View the Live project here](https://quicknote-milestone3-ci-b9aeeb595db7.herokuapp.com/)
+[View the Live project here](https://quicknote-ci-m3-thomas-ballard-bcc002047361.herokuapp.com/)
 
 ## Table of Contents
 
