@@ -377,16 +377,7 @@ This project was deployed to Heroku via Elephant SQL using the following steps:
 
 ## Testing
 
-Testing was an ongoing process as I built out the Quick Notes application, utilizing Chrome Developer Tools with console logging to ensure I was getting the required responses from the code as it was written.
-There are two types of testing methods available: 'Manual' and 'Automated.' Both have been used in some form throughout the creation of the website questionnaire.
-
-* __Manual Testing__ Is done by an individual to see if they can use the product in a way that creates, finds, and results in bugs, or not, to ensure it behaves correctly for the user when pushed live.
-
-* __Automated Testing__ Is done by utilizing an automation framework or another tool or software suite to check for errors and bugs in code.
-
-### Known Bugs
-
-* No Known Bugs
+Testing was an ongoing process as I built out the Quick Notes application, utilizing Chrome Developer Tools with along with console logging to ensure I was getting the required responses from the code as it was written.
 
 ### Validator Testing
 
@@ -510,6 +501,10 @@ All manual testing was carried out by myself and a few friends on various device
 * User Notes are edited correctly
 * User Notes are deleted correctly
 * User Account is deleted correctly
+
+### Known Bugs
+
+* No Known Bugs
 
 ## Credits
 
