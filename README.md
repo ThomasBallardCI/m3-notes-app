@@ -431,7 +431,7 @@ Testing was an ongoing process as I built out the Quick Notes application, utili
 
 #### [Python Validator](https://pep8ci.herokuapp.com/)
 
-* __Results for Init.py__
+* __Results for init.py__
 
   ![Python Results init.py](docs/validation-results/python_valid_init.jpg)
 
@@ -442,11 +442,6 @@ Testing was an ongoing process as I built out the Quick Notes application, utili
 * __Results for Routes.py__
 
   ![Python Results routes.py](docs/validation-results/python_valid_routes.jpg)
-
-* __Results for Env.py__
-
-  Shows "E501 line too long" due to generated SECRET_KEY
-  ![Python Results env.py](docs/validation-results/python_valid_env.jpg)
 
 * __Results for Run.py__
 
