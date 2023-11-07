@@ -478,7 +478,7 @@ All manual testing was carried out by myself and a few friends on various device
 
 #### Input Field
 
-* Testing of the input fields was done by passing them characters below and above the limits set for each input field.
+* Testing of the input fields was done by passing characters below and above the limits set for each input field.
 
 #### Authentication
 
