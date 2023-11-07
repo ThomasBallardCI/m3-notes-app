@@ -42,8 +42,8 @@ def home():
     form, validates the input, and creates a new user if the data is valid.
     If the email provided already exists in the database, it flashes an
     error message.
-    Otherwise, it checks and validates the input data such as email, first name,
-    last name, and passwords.
+    Otherwise, it checks and validates the input data such as email,
+    first name ,last name, and passwords.
     If all validations pass, a new user is created, added to the database,
     and the user is logged in.
     It then redirects to the 'notes' page after a successful account creation.
@@ -95,34 +95,34 @@ def home():
         # Validating input data
         elif not email or len(email.strip()) < 4:
             flash("The Email must consist of more than 3 characters",
-                category="error")
+                  category="error")
 
         elif len(email.strip()) > 150:
             flash("The Email must consist of less than 150 characters",
-            category="error")
+                  category="error")
 
         elif not first_name or len(first_name.strip()) < 2:
             flash("The First Name must consist of more than 1 character",
-                category="error")
+                  category="error")
 
         elif len(first_name.strip()) > 30:
             flash("The First Name must consist of less than 30 characters",
-            category="error")
+                  category="error")
 
         elif not last_name or len(last_name.strip()) < 2:
             flash("The Last Name must consist of more than 1 character",
-            category="error")
+                  category="error")
 
         elif len(last_name.strip()) > 30:
             flash("The Last Name must consist of less than 30 characters",
-            category="error")
+                  category="error")
 
         elif password1 != password2:
             flash("The Passwords do not match", category="error")
 
         elif not password1 or len(password1.strip()) < 7:
             flash("The Password must be at least 7 characters",
-            category="error")
+                  category="error")
 
         elif len(password1.strip()) > 150:
             flash("The Password is too Long!", category="error")
@@ -225,14 +225,14 @@ def login():
 
     Description:
         This view function handles the login process for users.
-        If the HTTP request method is POST, it attempts to authenticate the user
-        using the provided email and password.
-        If the authentication is successful, the user is logged in and 
-        redirected to the 'notes' view. 
+        If the HTTP request method is POST, it attempts to authenticate the
+        user using the provided email and password.
+        If the authentication is successful, the user is logged in and
+        redirected to the 'notes' view.
         If the email or password is incorrect, appropriate flash messages
         are shown.
-        If the request method is GET, it displays the login page, allowing users
-        to enter their credentials.
+        If the request method is GET, it displays the login page, allowing
+        users to enter their credentials.
 
     Returns:
         A redirection to the 'notes' view after successful login or
@@ -305,8 +305,8 @@ def notes():
         This view function retrieves and displays a list of notes belonging
         to the authenticated user.
         It queries the database to retrieve the user's notes, orders them in
-        descending order of the note's date, and passes the list of notes to the
-        'notes.html' template for rendering.
+        descending order of the note's date, and passes the list of notes to
+        the 'notes.html' template for rendering.
         Users can view and manage their notes through this page.
 
     Returns:
@@ -336,8 +336,8 @@ def add_note():
         It validates that the title and content meet minimum length
         requirements.
         If both conditions are met, a new note is created and added to
-        the database. Users are then redirected to the 'notes' view to see their
-        updated list of notes.
+        the database. Users are then redirected to the 'notes' view to see
+        their updated list of notes.
 
     Returns:
         A redirection to the 'notes' view after adding the new note.

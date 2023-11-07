@@ -31,14 +31,15 @@ class User(db.Model, UserMixin):
         id (int): The unique identifier for the user.
         first_name (str): The user's first name.
         last_name (str): The user's last name.
-        email (str): The user's email address, which is unique and not nullable.
+        email (str): The user's email address, which is unique and
+        not nullable.
         password (str): The hashed password for the user.
         notes (relationship): A relationship to the user's notes.
 
     Description:
         This class represents the User model for the QuickNote application.
-        It defines the schema and attributes for user data, including the user's
-        name, email, password, and related notes.
+        It defines the schema and attributes for user data, including the
+        user's name, email, password, and related notes.
         The 'id' attribute serves as the primary key for identifying individual
         users.
     """

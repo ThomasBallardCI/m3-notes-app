@@ -383,27 +383,23 @@ There are two types of testing methods available: 'Manual' and 'Automated.' Both
 
   - __Results for Init.py__
 
-    Shows "E501 line too long" due to Docstrings
     ![Python Results init.py](docs/validation-results/python_valid_init.jpg)
 
   - __Results for Models.py__
 
-    Shows "E501 line too long" due to Docstrings
     ![Python Results models.py](docs/validation-results/python_valid_models.jpg)
 
   - __Results for Routes.py__
 
-    Shows "E501 line too long" due to Docstrings
     ![Python Results routes.py](docs/validation-results/python_valid_routes.jpg)
 
   - __Results for Env.py__
 
-    Shows "E501 line too long" due to Docstrings
+    Shows "E501 line too long" due to generated SECRET_KEY
     ![Python Results env.py](docs/validation-results/python_valid_env.jpg)
 
   - __Results for Run.py__
 
-    Shows "E501 line too long" due to Docstrings
     ![Python Results run.py](docs/validation-results/python_valid_run.jpg)
 
 ### Manual Testing
