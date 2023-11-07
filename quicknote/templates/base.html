@@ -26,7 +26,7 @@
                     <ul class="right hide-on-med-and-down">
                         {% if user.is_authenticated %}
                             <li><a class="black-text" href="{{ url_for('notes') }}" aria-label="View Notes">Notes</a></li>
-                            <li><a class="black-text" href="{{ url_for('user_management') }}" aria-label="Account">Account</a></li>
+                            <li><a class="black-text" href="{{ url_for('user_management') }}" aria-label="View Account">Account</a></li>
                             <li><a class="black-text modal-trigger" href="#modal-logout" aria-label="Logout">Logout</a></li>
                         {% else %}
                             <li><a class="black-text" href="{{ url_for('home') }}" aria-label="Go to Home">Home</a></li>
@@ -41,7 +41,7 @@
         <ul class="sidenav" id="mobile-demo" role="navigation">
             {% if user.is_authenticated %}
                 <li><a href="{{ url_for('notes') }}" aria-label="View Notes">Notes</a></li>
-                <li><a href="{{ url_for('user_management') }}" aria-label="Account">Account</a></li>
+                <li><a href="{{ url_for('user_management') }}" aria-label="View Account">Account</a></li>
                 <li><a href="#modal-logout" class="modal-trigger" aria-label="Logout">Logout</a></li>
             {% else %}
                 <li><a href="{{ url_for('home') }}" aria-label="Go to Home">Home</a></li>
@@ -90,7 +90,7 @@
             </div>
             <div class="modal-footer">
                 <a href="#!" class="waves-effect waves-light btn white purple-text text-darken-4 hoverable modal-close" aria-label="Cancel Logout">Cancel</a>
-                <a href="{{ url_for('logout')}}" class="modal-close btn waves-effect waves-light purple darken-4 hoverable" aria-label="Confirm Logout">Agree</a>
+                <a href="{{ url_for('logout')}}" class="modal-close btn waves-effect waves-light purple darken-4 hoverable" aria-label="Confirm Logout">Confirm</a>
             </div>
         </div>
     </div>
@@ -106,7 +106,7 @@
         <div class="footer-copyright white">
             <div class="container black-text">
                 © 2023 Copyright Thomas Ballard
-                <a class="black-text right github" href="https://github.com/ThomasBallardCI/m3-notes-app" target="_blank" aria-label="View on GitHub">GitHub</a>
+                <a class="black-text right github" href="https://github.com/ThomasBallardCI" target="_blank" aria-label="View GitHub profile">GitHub</a>
             </div>
         </div>
     </footer>

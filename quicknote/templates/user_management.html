@@ -78,15 +78,15 @@
         <!-- Modal footer -->
         <div class="modal-footer">
             <!-- Cancel button within the modal -->
-            <a href="#!" class="modal-close waves-effect waves-light btn-small white purple-text text-darken-4 hoverable"
-                aria-label="Cancel Delete">
+            <a href="#!" class="modal-close waves-effect waves-light btn-small 
+                white purple-text text-darken-4 hoverable" aria-label="Cancel Delete">
                 Cancel
             </a>
             
             <!-- Agree button to delete the account -->
             <a href="{{ url_for('delete_user', user_id=user.id) }}"
                 class="waves-effect waves-light btn-small red hoverable" aria-label="Confirm Delete">
-                Agree
+                Confirm
             </a>
         </div>
     </div>

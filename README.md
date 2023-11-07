@@ -1,20 +1,10 @@
+[View the Live project here](https://quicknote-ci-m3-tom-ballard-28c10547420d.herokuapp.com/)
+
 # QuickNotes
 
 This Flask-based web application was developed to offer users a swift, simple, efficient, and secure online platform for storing notes.
 
 !["Am I Responsive" image](docs/supp-images/amiresponsive.jpg)
-
-[View the Live project here](https://quicknote-ci-m3-tom-ballard-28c10547420d.herokuapp.com/)
-
-## Table of Contents
-
-1. [User Experience](#user-experience)
-2. [Features](#features)
-3. [Design](#design)
-4. [Technologies Used](#technologies-used)
-5. [Deployment and Local Development](#deployment--local-development)
-6. [Testing](#testing)
-7. [Credits](#credits)
 
 ## User Experience
 
