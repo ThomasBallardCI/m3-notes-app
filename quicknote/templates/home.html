@@ -1,94 +1,86 @@
 {% extends "base.html" %}
 
-<!-- This block sets the title of the page to 'Home' -->
-{% block title %} Home {% endblock %}
+{% block title %}
+    <!-- This block sets the title of the page to 'Home' -->
+    Home
+{% endblock %}
 
 <!-- This block contains the main content of the page -->
 {% block content %}
-
-<div class="row">
-    <!-- Left Column -->
-    <div class="col s12 m6">
-        <div>
-            <!-- Main Heading -->
-            <h1>Start Organizing Your Thoughts Today!</h1>
-        </div>
-        <div class="divider" role="separator" aria-label="Section Divider"></div>
-        <div>
-            <!-- Subheading 1 -->
-            <p class="sub-text">Join our friendly note-taking community for a fast, secure, and hassle-free experience.
-            </p>
+    <div class="row">
+        <!-- Left Column -->
+        <div class="col s12 m6">
+            <div>
+                <!-- Main Heading -->
+                <h1>Start Organizing Your Thoughts Today!</h1>
+            </div>
             <div class="divider" role="separator" aria-label="Section Divider"></div>
-            <!-- Subheading 2 -->
-            <p class="sub-text2">Create, Edit, and Organize Your Notes Effortlessly! Get started in seconds with our
-                user-friendly note-taking platform. Your thoughts, securely stored.</p>
+            <div>
+                <!-- Subheading 1 -->
+                <p class="sub-text">Join our friendly note-taking community for a fast, secure, and hassle-free experience.</p>
+                <div class="divider" role="separator" aria-label="Section Divider"></div>
+                <!-- Subheading 2 -->
+                <p class="sub-text2">Create, Edit, and Organize Your Notes Effortlessly! Get started in seconds with our user-friendly note-taking platform. Your thoughts, securely stored.</p>
+            </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="col s12 m6">
+            <div class="section" aria-hidden="true"></div>
+
+            <!-- Registration Form -->
+            <form class="col s12 card-panel center-align" method="POST">
+                <p class="center-align register-below">Register Below To Get Started</p>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <!-- Email Input Field -->
+                        <input id="email" name="email" type="email" class="validate" minlength="4" maxlength="150" required aria-label="Email Input">
+                        <label for="email">Email</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <!-- First Name Input Field -->
+                        <input id="first_name" name="first_name" type="text" class="validate" minlength="2" maxlength="30" required aria-label="First Name Input">
+                        <label for="first_name">First Name</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <!-- Last Name Input Field -->
+                        <input id="last_name" name="last_name" type="text" class="validate" minlength="2" maxlength="30" required aria-label="Last Name Input">
+                        <label for="last_name">Last Name</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <!-- Password Input Field -->
+                        <input id="password1" name="password1" type="password" class="validate" minlength="7" maxlength="150" required aria-label="Password Input">
+                        <label for="password1">Password</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <!-- Confirm Password Input Field -->
+                        <input id="password2" name="password2" type="password" class="validate" minlength="7" maxlength="150" required aria-label="Confirm Password Input">
+                        <label for="password2">Password (Confirm)</label>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button class="btn waves-effect waves-light purple darken-4 hoverable" type="submit" name="action" aria-label="Submit Registration Form">
+                    Submit
+                    <i class="material-icons right">send</i>
+                </button>
+                <div class="section"></div>
+            </form>
+
+            <!-- Login Link -->
+            <p class="center-align login-here">Already have an account?
+                <a href="{{ url_for('login') }}" aria-label="Login Link" class="login-link btn waves-effect waves-light white purple-text text-darken-4 hoverable">
+                    login here!
+                </a>
+            </p>
         </div>
     </div>
-
-    <!-- Right Column -->
-    <div class="col s12 m6">
-        <div class="section" aria-hidden="true"></div>
-
-        <!-- Registration Form -->
-        <form class="col s12 card-panel center-align" method="POST">
-            <p class="center-align register-below">Register Below To Get Started</p>
-            <div class="row">
-                <div class="input-field col s12">
-                    <!-- Email Input Field -->
-                    <input id="email" name="email" type="email" class="validate" minlength="4" maxlength="150" required
-                        aria-label="Email Input">
-                    <label for="email">Email</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <!-- First Name Input Field -->
-                    <input id="first_name" name="first_name" type="text" class="validate" minlength="2" maxlength="30"
-                        required aria-label="First Name Input">
-                    <label for="first_name">First Name</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <!-- Last Name Input Field -->
-                    <input id="last_name" name="last_name" type="text" class="validate" minlength="2" maxlength="30"
-                        required aria-label="Last Name Input">
-                    <label for="last_name">Last Name</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <!-- Password Input Field -->
-                    <input id="password1" name="password1" type="password" class="validate" minlength="7" maxlength="150"
-                        required aria-label="Password Input">
-                    <label for="password1">Password</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <!-- Confirm Password Input Field -->
-                    <input id="password2" name="password2" type="password" class="validate" minlength="7" maxlength="150"
-                        required aria-label="Confirm Password Input">
-                    <label for="password2">Password (Confirm)</label>
-                </div>
-            </div>
-
-            <!-- Submit Button -->
-            <button class="btn waves-effect waves-light purple darken-4 hoverable" type="submit" name="action"
-                aria-label="Submit Registration Form">Submit
-                <i class="material-icons right">send</i>
-            </button>
-            <div class="section"></div>
-        </form>
-
-        <!-- Login Link -->
-        <p class="center-align login-here">Already have an account?
-            <a href="{{ url_for('login') }}" aria-label="Login Link"
-            class="login-link btn waves-effect waves-light white purple-text text-darken-4 hoverable">
-                login here!
-            </a>
-        </p>
-    </div>
-</div>
-
 {% endblock %}

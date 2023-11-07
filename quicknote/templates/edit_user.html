@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
-<!-- This block sets the title of the page to 'Edit User' -->
-{% block title %} Edit User {% endblock %}
+{% block title %}
+    <!-- This block sets the title of the page to 'Edit User' -->
+    Edit User
+{% endblock %}
 
 <!-- This block contains the main content of the page -->
 {% block content %}
-
-
 <!-- Page header -->
 <h1 class="black-text center-align" aria-label="Edit User">Edit User</h1>
 
@@ -27,7 +27,7 @@
             <div class="input-field">
                 <i class="material-icons prefix purple-text text-darken-4" aria-hidden="true">mode_edit</i>
                 <input id="last_name" name="last_name" value="{{ user.last_name }}" minlength="2" maxlength="30"
-                    type="text" class="validate" required aria-label="User First name Input">
+                    type="text" class="validate" required aria-label="User Last name Input">
                 <label for="last_name" aria-label="Title">Last Name</label>
             </div>
         </div>
@@ -42,5 +42,4 @@
         </div>
     </form>
 </div>
-
 {% endblock %}

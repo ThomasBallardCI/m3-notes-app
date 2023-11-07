@@ -1,24 +1,22 @@
 {% extends "base.html" %}
 
 <!-- This block sets the title of the page to 'Edit Note' -->
-{% block title %} Edit Note {% endblock %}
+{% block title %}
+    Edit Note
+{% endblock %}
 
 <!-- This block contains the main content of the page -->
 {% block content %}
-
-
 <!-- Page header -->
 <h1 class="black-text center-align" aria-label="Edit Note Title">Edit Note</h1>
 
 <div class="row card-panel">
-    <form class="col s12" method="POST" action="{{ url_for('edit_note', note_id=note.id) }}"
-        aria-label="Edit Note Form">
+    <form class="col s12" method="POST" action="{{ url_for('edit_note', note_id=note.id) }}" aria-label="Edit Note Form">
         <!-- Note title -->
         <div class="row">
             <div class="input-field">
                 <i class="material-icons prefix purple-text text-darken-4" aria-hidden="true">mode_edit</i>
-                <input id="note_title" name="note_title" value="{{ note.note_title }}" minlength="1" maxlength="30"
-                    type="text" class="validate" required aria-label="Note Title Input">
+                <input id="note_title" name="note_title" value="{{ note.note_title }}" minlength="1" maxlength="30" type="text" class="validate" required aria-label="Note Title Input">
                 <label for="note_title" aria-label="Title">Title</label>
             </div>
         </div>
@@ -27,8 +25,7 @@
         <div class="row">
             <div class="input-field">
                 <i class="material-icons prefix purple-text text-darken-4" aria-hidden="true">description</i>
-                <textarea id="note_content" name="note_content" minlength="1" maxlength="5000"
-                    class="materialize-textarea" required aria-label="Note Content">{{ note.note_content }}</textarea>
+                <textarea id="note_content" name="note_content" minlength="1" maxlength="5000" class="materialize-textarea" required aria-label="Note Content">{{ note.note_content }}</textarea>
                 <label for="note_content" aria-label="Content">Content</label>
             </div>
         </div>
@@ -36,13 +33,10 @@
         <!-- Submit button -->
         <div class="row">
             <div class="center-align">
-                <a class="waves-effect waves-light btn white purple-text text-darken-4 hoverable"
-                    href="{{ url_for('notes') }}" aria-label="Cancel">Cancel</a>
-                <button type="submit" class="btn waves-effect waves-light purple darken-4 hoverable"
-                    aria-label="Update Note">Update</button>
+                <a class="waves-effect waves-light btn white purple-text text-darken-4 hoverable" href="{{ url_for('notes') }}" aria-label="Cancel">Cancel</a>
+                <button type="submit" class="btn waves-effect waves-light purple darken-4 hoverable" aria-label="Update Note">Update</button>
             </div>
         </div>
     </form>
 </div>
-
 {% endblock %}

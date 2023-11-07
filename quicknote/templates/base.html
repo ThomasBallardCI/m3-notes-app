@@ -6,109 +6,79 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-        type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
     <title>Quick Notes - {% block title %}{% endblock %}</title>
 </head>
 
 <body>
-
     <header>
-        <!-- top navbar -->
+        <!-- Top navbar -->
         <div class="navbar-fixed">
             <nav class="white">
                 <div class="nav-wrapper container">
                     <a href="{{ url_for('home') }}" class="brand-logo black-text" aria-label="Go to Home">
                         Quick Notes
                     </a>
-                    <a href="#" data-target="mobile-demo" class="sidenav-trigger black-text"
-                        aria-label="Open Navigation Menu">
+                    <a href="#" data-target="mobile-demo" class="sidenav-trigger black-text" aria-label="Open Navigation Menu">
                         <i class="material-icons">menu</i>
                     </a>
                     <ul class="right hide-on-med-and-down">
                         {% if user.is_authenticated %}
-                        <li>
-                            <a class="black-text" href="{{ url_for('notes') }}" aria-label="View Notes">Notes</a>
-                        </li>
-                        <li>
-                            <a class="black-text" href="{{ url_for('user_management') }}"
-                                aria-label="Account">Account</a>
-                        </li>
-                        <li>
-                            <a class="black-text modal-trigger" href="#modal-logout" aria-label="Logout">Logout</a>
-                        </li>
+                            <li><a class="black-text" href="{{ url_for('notes') }}" aria-label="View Notes">Notes</a></li>
+                            <li><a class="black-text" href="{{ url_for('user_management') }}" aria-label="Account">Account</a></li>
+                            <li><a class="black-text modal-trigger" href="#modal-logout" aria-label="Logout">Logout</a></li>
                         {% else %}
-                        <li>
-                            <a class="black-text" href="{{ url_for('home') }}" aria-label="Go to Home">Home</a>
-                        </li>
-                        <li>
-                            <a class="black-text" href="{{ url_for('login') }}" aria-label="Login">Login</a>
-                        </li>
+                            <li><a class="black-text" href="{{ url_for('home') }}" aria-label="Go to Home">Home</a></li>
+                            <li><a class="black-text" href="{{ url_for('login') }}" aria-label="Login">Login</a></li>
                         {% endif %}
                     </ul>
                 </div>
             </nav>
         </div>
 
-        <!-- mobile sidenav -->
+        <!-- Mobile sidenav -->
         <ul class="sidenav" id="mobile-demo" role="navigation">
             {% if user.is_authenticated %}
-            <li>
-                <a href="{{ url_for('notes') }}" aria-label="View Notes">Notes</a>
-            </li>
-            <li>
-                <a href="{{ url_for('user_management') }}" aria-label="Account">Account</a>
-            </li>
-            <li>
-                <a href="#modal-logout" class="modal-trigger" aria-label="Logout">Logout</a>
-            </li>
+                <li><a href="{{ url_for('notes') }}" aria-label="View Notes">Notes</a></li>
+                <li><a href="{{ url_for('user_management') }}" aria-label="Account">Account</a></li>
+                <li><a href="#modal-logout" class="modal-trigger" aria-label="Logout">Logout</a></li>
             {% else %}
-            <li>
-                <a href="{{ url_for('home') }}" aria-label="Go to Home">Home</a>
-            </li>
-            <li>
-                <a href="{{ url_for('login') }}" aria-label="Login">Login</a>
-            </li>
+                <li><a href="{{ url_for('home') }}" aria-label="Go to Home">Home</a></li>
+                <li><a href="{{ url_for('login') }}" aria-label="Login">Login</a></li>
             {% endif %}
         </ul>
     </header>
 
-    <!-- alert bar to alert flash error or success messages from auth.py -->
-    <!-- function define varable messages equal to get_flashed_message to get all flashed messages and categories-->
+    <!-- Alert bar to display flash messages -->
     {% with messages = get_flashed_messages(with_categories=true) %}
-
-    <!-- loop through all flash messages and display relevent flash message -->
-    {% if messages %}
-    {% for category, message in messages %}
-    <!-- alert for errors -->
-    {% if category == "error" %}
-    <div class="container" role="alert">
-        <div class="card-alert card red lighten-5">
-            <div class="card-content red-text">
-                <strong>{{ message }}</strong>
-            </div>
-            <button type="button" class="close red-text" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    </div>
-
-    <!-- alert for success -->
-    {% else %}
-    <div class="container" role="alert">
-        <div class="card-alert card green lighten-5">
-            <div class="card-content green-text">
-                <strong>{{ message }}</strong>
-            </div>
-            <button type="button" class="close green-text" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    </div>
-    {% endif %}
-    {% endfor %}
-    {% endif %}
+        {% if messages %}
+            {% for category, message in messages %}
+                {% if category == "error" %}
+                    <div class="container" role="alert">
+                        <div class="card-alert card red lighten-5">
+                            <div class="card-content red-text">
+                                <strong>{{ message }}</strong>
+                            </div>
+                            <button type="button" class="close red-text" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="container" role="alert">
+                        <div class="card-alert card green lighten-5">
+                            <div class="card-content green-text">
+                                <strong>{{ message }}</strong>
+                            </div>
+                            <button type="button" class="close green-text" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
     {% endwith %}
 
     <!-- Logout Modal Structure -->
@@ -116,21 +86,17 @@
         <div id="modal-logout" class="modal" role="dialog">
             <div class="modal-content">
                 <h4>Confirm Logout</h4>
-                <p>Are you sure you want to log out? Logging out will end your current session and require you to sign
-                    in again to access your notes. </p>
+                <p>Are you sure you want to log out? Logging out will end your current session and require you to sign in again to access your notes.</p>
             </div>
             <div class="modal-footer">
-                <a href="#!" class="waves-effect waves-light btn white purple-text text-darken-4 hoverable modal-close"
-                    aria-label="Cancel Logout">Cancel</a>
-                <a href="{{ url_for('logout')}}"
-                    class="modal-close btn waves-effect waves-light purple darken-4 hoverable"
-                    aria-label="Confirm Logout">Agree</a>
+                <a href="#!" class="waves-effect waves-light btn white purple-text text-darken-4 hoverable modal-close" aria-label="Cancel Logout">Cancel</a>
+                <a href="{{ url_for('logout')}}" class="modal-close btn waves-effect waves-light purple darken-4 hoverable" aria-label="Confirm Logout">Agree</a>
             </div>
         </div>
     </div>
 
     <main class="container">
-        <!-- This block represents the main content of the page -->
+        <!-- Main content of the page -->
         {% block content %}
         {% endblock %}
     </main>
@@ -140,8 +106,7 @@
         <div class="footer-copyright white">
             <div class="container black-text">
                 © 2023 Copyright Thomas Ballard
-                <a class="black-text right github" href="https://github.com/ThomasBallardCI/m3-notes-app"
-                    target="_blank" aria-label="View on GitHub">GitHub</a>
+                <a class="black-text right github" href="https://github.com/ThomasBallardCI/m3-notes-app" target="_blank" aria-label="View on GitHub">GitHub</a>
             </div>
         </div>
     </footer>
@@ -150,7 +115,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- Custom JavaScript -->
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-
 </body>
-
 </html>
