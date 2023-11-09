@@ -402,24 +402,16 @@ Testing was an ongoing process as I built out the Quick Notes application, utili
 
 #### [HTML Validator](https://validator.w3.org/)
 
-* __Result for base.html__
-
-  19 Errors appear due to the jinja template syntax
-  ![HTML Results base.html](docs/validation-results/html_valid_base.jpg)
-
 * __Results for home.html__
 
-  4 Errors appear due to the jinja template syntax
   ![HTML Results home.html](docs/validation-results/html_valid_home.jpg)
 
 * __Results for login.html__
 
-  4 Errors appear due to the jinja template syntax
   ![HTML Results login.html](docs/validation-results/html_valid_login.jpg)
 
 * __Results for notes.html__
 
-  10 Errors appear due to the jinja template syntax
   ![HTML Results notes.html](docs/validation-results/html_valid_notes.jpg)
 
 * __Results for add_note.html__
@@ -446,6 +438,9 @@ Testing was an ongoing process as I built out the Quick Notes application, utili
 #### [JSLint](https://jslint.com)
 
 * __Script.js__
+
+  Undefined variable due to Materialize Framework initialization
+
   ![JSLint script.js](docs/validation-results/js_valid.jpg)
 
 #### [Python Validator](https://pep8ci.herokuapp.com/)

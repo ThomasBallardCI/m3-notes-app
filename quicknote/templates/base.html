@@ -38,7 +38,7 @@
         </div>
 
         <!-- Mobile sidenav -->
-        <ul class="sidenav" id="mobile-demo" role="navigation">
+        <ul class="sidenav" id="mobile-demo">
             {% if user.is_authenticated %}
                 <li><a href="{{ url_for('notes') }}" aria-label="View Notes">Notes</a></li>
                 <li><a href="{{ url_for('user_management') }}" aria-label="View Account">Account</a></li>
