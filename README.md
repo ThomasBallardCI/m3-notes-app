@@ -52,35 +52,54 @@ The platform is designed for accessibility across various devices, ensuring a se
 
 * __Navigation__
 
-  * The site's navigation intelligently adjusts based on the user's login status. For logged-out users, it provides clear pathways to sign up and log in, ensuring a seamless entry into the platform. Once logged in, the navigation dynamically adapts, offering direct access to the user's notes, account management, and other relevant sections, providing an intuitive and personalized user experience.
+  * The site's navigation intelligently adjusts based on the user's login status. For logged-out users, it provides clear a pathway to log in, ensuring a seamless entry into the platform. Once logged in, the navigation dynamically adapts, offering direct access to the user's notes, account management, and other relevant sections, providing an intuitive and personalized user experience.
+
+    ![Navbar Logged Out](docs/supp-images/nav_logged_out.jpg)
+    ![Navbar Logged In](docs/supp-images/nav_logged_in.jpg)
 
 * __Landing/Welcome Page__
 
   * The Landing/Welcome Page serves as an introduction to the app, offering users a concise overview of its functionalities. It prominently features a user-friendly registration form for new users to sign up directly or provides a 'Login!' link for existing users, ensuring a seamless entry into the platform.
 
+    ![Welcome Page](docs/supp-images/welcome_page_features.jpg)
+
 * __Notes Page__
 
   * The Notes Page is meticulously crafted to streamline note creation and easy access. It includes a visible button for creating new notes, ensuring a swift and intuitive process. Once created, notes are displayed within a collapsible element, presenting their titles and creation dates. This design optimizes screen space, allowing users to efficiently manage their notes by expanding, editing, or deleting as needed.
+
+    ![Notes Page](docs/supp-images/notes_page_features.jpg)
 
 * __Edit Note Page__
 
   * Dedicated to enhancing user control, the Edit Note Page empowers users to modify specific note details, such as titles and content. Any changes made to a note update it, moving it to the top of the notes page for quick and convenient access.
 
+    ![Edit Notes Page](docs/supp-images/edit_notes_features.jpg)
+
 * __Delete Notes__
 
   * The 'Delete Notes' feature strategically incorporates a modal prompt for user confirmation before deletion. This intentional design minimizes accidental deletion of notes, ensuring a deliberate action by the user.
+
+    ![Delete Notes](docs/supp-images/del_notes_feature.jpg)
 
 * __Account Page__
 
   * The Account Page serves as a hub for account-related actions. It offers a user-friendly interface for users to manage their accounts and corresponding notes. Featuring straightforward instructions, warnings, and two prominently placed buttons: 'Back to Notes' and 'Delete Account.' The 'Delete Account' option triggers a confirmation modal, mitigating the risk of accidental account deletion. The 'Back to Notes' button seamlessly redirects users to their notes page, enhancing user navigation.
 
+    ![Account Page](docs/supp-images/account_features.jpg)
+
 * __Modals__
 
   * Modal dialogs are strategically incorporated throughout the platform to confirm critical user actions. These modal prompts serve as a safeguard against accidental actions, such as note deletion, account deletion, and logging out, enhancing user confidence and preventing unintended actions.
 
+    ![Delete Account Modal](docs/supp-images/del_account_modal.jpg)
+    ![Delete Note Modal](docs/supp-images/del_note_modal.jpg)
+    ![Logout Modal](docs/supp-images/logout_modal_feature.jpg)
+
 * __Footer Section__
 
   * The footer section incorporates essential information or links, adding to the site's accessibility and providing additional resources or contact details for users to navigate or seek support as needed.
+
+    ![Footer](docs/supp-images/footer_feature.jpg)
 
 ### Future Features
 
