@@ -416,18 +416,19 @@ Testing was an ongoing process as I built out the Quick Notes application, utili
 
 * __Results for add_note.html__
 
-  5 Errors appear due to the jinja template syntax
   ![HTML Results add_note.html](docs/validation-results/html_valid_add_note.jpg)
 
 * __Results for edit_note.html__
 
-  5 Errors appear due to the jinja template syntax
   ![HTML Results edit_note.html](docs/validation-results/html_valid_edit_note.jpg)
 
 * __Results for user_management.html__
 
-  6 Errors appear due to the jinja template syntax
   ![HTML Results user_management.html](docs/validation-results/html_valid_account.jpg)
+
+* __Results for edit_user.html__
+
+  ![HTML Results edit_user.html](docs/validation-results/html_valid_edit_user.jpg)
 
 #### [CSS Validator](https://jigsaw.w3.org/css-validator/)
 
